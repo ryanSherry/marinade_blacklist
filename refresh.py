@@ -187,6 +187,19 @@ def write_outputs(records: list[dict]) -> None:
     all_epochs = sorted({e for r in records for e in r.get("slashed_epochs", [])})
     epoch_range = [all_epochs[0], all_epochs[-1]] if all_epochs else [None, None]
 
+    # Primary lists exclude inactive validators (deregistered, no
+    # current stake, no leader slots — can't sandwich anyone).  The
+    # full historical set is preserved in historical.json and the
+    # dated history/ snapshots for audit / trend work.
+    active_records = sorted(
+        [r for r in records if r.get("is_active")],
+        key=lambda r: (-int(r["slashed_lamports"]), r["vote_account"]),
+    )
+    inactive_records = sorted(
+        [r for r in records if not r.get("is_active")],
+        key=lambda r: (-int(r["slashed_lamports"]), r["vote_account"]),
+    )
+
     full = {
         "generated_at": now_iso,
         "source": MARINADE_API,
@@ -196,45 +209,73 @@ def write_outputs(records: list[dict]) -> None:
             "(definitively slashed for being on SAM blacklist).  "
             "BondRiskFee = soft severity (flagged, risk fee charged).  "
             "Other reasons (Bidding, ProtectedEvent, PriorityFee, "
-            "BidTooLowPenalty) are NOT in this list."
+            "BidTooLowPenalty) are NOT in this list.  "
+            "Inactive (deregistered) validators are excluded from this "
+            "file — see historical.json for the full historical set."
         ),
         "epoch_range": epoch_range,
         "counts": {
-            "total": len(records),
-            "hard": sum(1 for r in records if r["severity"] == "hard"),
-            "soft": sum(1 for r in records if r["severity"] == "soft"),
+            "total": len(active_records),
+            "hard": sum(1 for r in active_records if r["severity"] == "hard"),
+            "soft": sum(1 for r in active_records if r["severity"] == "soft"),
         },
-        "validators": sorted(
-            records,
-            key=lambda r: (-int(r["slashed_lamports"]), r["vote_account"]),
-        ),
+        "validators": active_records,
     }
 
     (DATA_DIR / "blacklist.json").write_text(
         json.dumps(full, indent=2, sort_keys=False) + "\n"
     )
 
-    # Hard-only subset — what most consumers actually want
-    hard_records = [r for r in records if r["severity"] == "hard"]
+    # Hard-only subset of active validators
+    hard_records = [r for r in active_records if r["severity"] == "hard"]
     hard = {**full,
             "counts": {"total": len(hard_records), "hard": len(hard_records), "soft": 0},
-            "validators": [r for r in full["validators"] if r["severity"] == "hard"]}
+            "validators": hard_records}
     (DATA_DIR / "hard_only.json").write_text(
         json.dumps(hard, indent=2) + "\n"
+    )
+
+    # Historical set: every validator that's ever been slashed,
+    # including deregistered ones.  Audit trail / completeness.
+    all_records = active_records + inactive_records
+    historical = {
+        "generated_at": now_iso,
+        "source": MARINADE_API,
+        "note": (
+            "Every validator that has ever been slashed by Marinade for "
+            "blacklist/risk reasons, including those that have since been "
+            "deregistered (is_active=false).  For current routing-relevant "
+            "decisions use blacklist.json — this file is the full audit "
+            "trail."
+        ),
+        "epoch_range": epoch_range,
+        "counts": {
+            "total": len(all_records),
+            "active": len(active_records),
+            "inactive": len(inactive_records),
+            "hard": sum(1 for r in all_records if r["severity"] == "hard"),
+            "soft": sum(1 for r in all_records if r["severity"] == "soft"),
+        },
+        "validators": all_records,
+    }
+    (DATA_DIR / "historical.json").write_text(
+        json.dumps(historical, indent=2) + "\n"
     )
 
     # CSV for spreadsheet use
     csv_fields = [
         "severity", "vote_account", "validator_identity",
-        "is_active", "current_stake_sol", "commission_pct",
+        "still_blacklisted", "is_active",
+        "current_stake_sol", "commission_pct",
         "slashed_sol", "slashed_lamports", "event_count",
         "first_slashed_epoch", "last_slashed_epoch",
+        "epochs_since_last_slash",
         "last_vote_slot", "reasons",
     ]
     with open(DATA_DIR / "blacklist.csv", "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=csv_fields, extrasaction="ignore")
         w.writeheader()
-        for r in full["validators"]:
+        for r in full["validators"]:  # active-only
             row = dict(r)
             row["reasons"] = ",".join(r.get("reasons", []))
             w.writerow(row)
@@ -250,40 +291,48 @@ def write_outputs(records: list[dict]) -> None:
         items = sorted(set(s for s in items if s))
         (DATA_DIR / name).write_text("\n".join(items) + ("\n" if items else ""))
 
+    # Plain-text lists default to ACTIVE-only (the routing-relevant set).
     write_lines("vote_accounts_hard.txt",
-                [r["vote_account"] for r in records if r["severity"] == "hard"])
+                [r["vote_account"] for r in active_records
+                 if r["severity"] == "hard"])
     write_lines("vote_accounts_all.txt",
-                [r["vote_account"] for r in records])
+                [r["vote_account"] for r in active_records])
     write_lines("identities_hard.txt",
-                [r["validator_identity"] for r in records
+                [r["validator_identity"] for r in active_records
                  if r["severity"] == "hard" and r["validator_identity"]])
     write_lines("identities_all.txt",
-                [r["validator_identity"] for r in records if r["validator_identity"]])
+                [r["validator_identity"] for r in active_records
+                 if r["validator_identity"]])
 
     # ── Derived endpoint files (each optimised for one query pattern) ──
 
     # stats.json — aggregate counters for dashboards / status badges.
+    # Reports both the active-only headline numbers and the broader
+    # historical totals so dashboards can show both.
     total_stake_sol = round(
-        sum(r.get("current_stake_sol") or 0 for r in full["validators"]), 2
+        sum(r.get("current_stake_sol") or 0 for r in active_records), 2
     )
-    active_count = sum(1 for r in full["validators"] if r.get("is_active"))
     stats = {
         "generated_at": now_iso,
         "source": MARINADE_API,
         "epoch_range": epoch_range,
-        "counts": full["counts"],
-        "active_validators": active_count,
-        "deregistered_validators": full["counts"]["total"] - active_count,
-        "total_slashed_sol": round(
-            sum(r["slashed_lamports"] for r in full["validators"]) / 1e9, 2
-        ),
+        "active_counts": full["counts"],   # what blacklist.json shows
+        "historical_counts": historical["counts"],
         "currently_staked_sol": total_stake_sol,
+        "active_total_slashed_sol": round(
+            sum(r["slashed_lamports"] for r in active_records) / 1e9, 2
+        ),
+        "historical_total_slashed_sol": round(
+            sum(r["slashed_lamports"] for r in all_records) / 1e9, 2
+        ),
     }
     (DATA_DIR / "stats.json").write_text(json.dumps(stats, indent=2) + "\n")
 
     # by_epoch.json — { epoch: [vote_account, ...] } for time-series.
+    # Includes everyone (active + inactive) — time-series naturally
+    # needs the full history.
     by_epoch: dict[str, list[str]] = defaultdict(list)
-    for r in full["validators"]:
+    for r in all_records:
         for e in r.get("slashed_epochs", []):
             by_epoch[str(e)].append(r["vote_account"])
     by_epoch_sorted = {k: sorted(set(v)) for k, v in sorted(by_epoch.items(),
@@ -295,10 +344,9 @@ def write_outputs(records: list[dict]) -> None:
         }, indent=2) + "\n"
     )
 
-    # recent.json — top 50 sorted by last_slashed_epoch desc.  Easiest
-    # answer to "what's been added lately?"
+    # recent.json — top 50 sorted by last_slashed_epoch desc.  Active-only.
     recent_sorted = sorted(
-        full["validators"],
+        active_records,
         key=lambda r: (-(r.get("last_slashed_epoch") or 0),
                        -r["slashed_lamports"]),
     )[:50]
@@ -321,6 +369,30 @@ def write_outputs(records: list[dict]) -> None:
             "source": MARINADE_API,
             "count": len(active_records),
             "validators": active_records,
+        }, indent=2) + "\n"
+    )
+
+    # rehabilitated.json — validators that were slashed historically
+    # but no longer appear in recent enforcement.  These have come OFF
+    # the blacklist (Marinade no longer enforcing against them).
+    rehabilitated = [
+        r for r in all_records
+        if not r.get("still_blacklisted")
+        and (r.get("epochs_since_last_slash") or 0) >= 5
+    ]
+    (DATA_DIR / "rehabilitated.json").write_text(
+        json.dumps({
+            "generated_at": now_iso,
+            "source": MARINADE_API,
+            "count": len(rehabilitated),
+            "note": (
+                "Validators that were slashed in the past but have not "
+                "appeared in the LATEST enforcement batch for their "
+                "reason type.  Marinade has effectively removed them "
+                "from active blacklist enforcement, though their "
+                "historical slashings are preserved here."
+            ),
+            "validators": rehabilitated,
         }, indent=2) + "\n"
     )
 
@@ -411,6 +483,37 @@ def main() -> int:
 
     by_vote = aggregate_events(events)
     print(f"  {len(by_vote)} unique validators after filter", file=sys.stderr)
+
+    # Latest enforcement epoch per reason — used to flag "still
+    # blacklisted" vs "rehabilitated" status on each record.
+    latest_epoch_by_reason: dict[str, int] = defaultdict(int)
+    for r in by_vote.values():
+        for reason in r.get("reasons", []):
+            if r["slashed_epochs"]:
+                latest = max(r["slashed_epochs"])
+                latest_epoch_by_reason[reason] = max(
+                    latest_epoch_by_reason[reason], latest
+                )
+    # Across-all-reasons latest, for the epochs_since field.
+    network_max_epoch = max(
+        latest_epoch_by_reason.values(), default=0
+    )
+
+    for vote, rec in by_vote.items():
+        # still_blacklisted = appears in the LATEST enforcement batch
+        # for at least one of its reasons.
+        still = False
+        for reason in rec.get("reasons", []):
+            latest = latest_epoch_by_reason.get(reason, 0)
+            if rec.get("last_slashed_epoch") == latest:
+                still = True
+                break
+        rec["still_blacklisted"] = still
+        # epochs_since_last_slash = network_max - their_last
+        last = rec.get("last_slashed_epoch") or 0
+        rec["epochs_since_last_slash"] = (
+            network_max_epoch - last if network_max_epoch and last else None
+        )
 
     print(f"  resolving vote-account info via {RPC_URL}...", file=sys.stderr)
     vote_info = resolve_vote_account_info(list(by_vote.keys()))
