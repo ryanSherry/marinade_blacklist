@@ -324,6 +324,73 @@ def write_outputs(records: list[dict]) -> None:
         }, indent=2) + "\n"
     )
 
+    # currently_blacklisted.json — validators that appear in the LATEST
+    # epoch's events.  This is the "still on Marinade's blacklist
+    # right now" signal — Marinade re-evaluates each epoch, so a
+    # validator that stops appearing in new epochs has been removed
+    # (or rehabilitated).  Done per severity so consumers can pick:
+    # "currently_hard" = on the blacklist this epoch; "currently_soft"
+    # = currently being charged BondRiskFee.
+    by_severity_max_epoch: dict[str, int] = {}
+    for r in records:
+        if not r["slashed_epochs"]:
+            continue
+        # Reasons array contains either BlacklistPenalty or BondRiskFee
+        # (or both — but severity already collapsed to "hard" if both).
+        for sev_key, reason_tag in (("hard", "BlacklistPenalty"),
+                                     ("soft", "BondRiskFee")):
+            if reason_tag in r.get("reasons", []):
+                cur = by_severity_max_epoch.get(sev_key, 0)
+                by_severity_max_epoch[sev_key] = max(cur, max(r["slashed_epochs"]))
+
+    def currently(reason_tag: str, latest_epoch: int) -> list[dict]:
+        """Validators with `reason_tag` event in latest_epoch."""
+        out = []
+        for r in records:
+            if reason_tag in r.get("reasons", []) and latest_epoch in r.get("slashed_epochs", []):
+                out.append(r)
+        return out
+
+    latest_hard_epoch = by_severity_max_epoch.get("hard")
+    latest_soft_epoch = by_severity_max_epoch.get("soft")
+    currently_hard = currently("BlacklistPenalty", latest_hard_epoch) if latest_hard_epoch else []
+    currently_soft = currently("BondRiskFee", latest_soft_epoch) if latest_soft_epoch else []
+    # Union: a validator with BlacklistPenalty in latest hard epoch OR
+    # BondRiskFee in latest soft epoch.  Dedupe by vote_account.
+    seen = set()
+    currently_all = []
+    for r in currently_hard + currently_soft:
+        if r["vote_account"] in seen:
+            continue
+        seen.add(r["vote_account"])
+        currently_all.append(r)
+
+    (DATA_DIR / "currently_blacklisted.json").write_text(
+        json.dumps({
+            "generated_at": now_iso,
+            "source": MARINADE_API,
+            "latest_hard_epoch": latest_hard_epoch,
+            "latest_soft_epoch": latest_soft_epoch,
+            "counts": {
+                "total": len(currently_all),
+                "hard": len(currently_hard),
+                "soft": len(currently_soft),
+            },
+            "note": (
+                "Validators that appear in the LATEST epoch's events.  "
+                "Marinade re-evaluates the blacklist each epoch; a validator "
+                "that stops appearing in new epochs has been removed."
+            ),
+            "validators": currently_all,
+        }, indent=2) + "\n"
+    )
+
+    # Plain-text versions of the currently_blacklisted set
+    write_lines("currently_blacklisted_vote_accounts.txt",
+                [r["vote_account"] for r in currently_all])
+    write_lines("currently_blacklisted_hard.txt",
+                [r["vote_account"] for r in currently_hard])
+
     # Append daily snapshot to history (overwrites within the same day)
     snap_path = HISTORY_DIR / f"{datetime.now(timezone.utc).strftime('%Y-%m-%d')}.json"
     snap_path.write_text(json.dumps(full, indent=2) + "\n")
