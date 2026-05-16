@@ -1,0 +1,1 @@
+# No third-party dependencies — refresh.py uses only Python 3.10+ stdlib.

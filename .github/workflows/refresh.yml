@@ -1,0 +1,54 @@
+name: refresh
+
+# Run hourly + on-demand.  Marinade's settlement pipeline produces new
+# protected-event data per epoch (~3 days), but their API publishes
+# updates rolling — hourly catches new entries within an hour of
+# publication and stays well within GitHub Actions' free-tier minutes.
+on:
+  schedule:
+    - cron: '0 * * * *'   # top of every hour, UTC
+  workflow_dispatch:       # manual trigger button in the Actions tab
+
+# Allow the workflow to push commits back to the repo
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    concurrency:
+      # Don't queue multiple runs — if a refresh is already going, skip
+      # the new one.  Lock per branch.
+      group: refresh-${{ github.ref }}
+      cancel-in-progress: false
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # We need write access to push the data update
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run refresh
+        env:
+          # Optional: set a faster RPC by adding a repo secret named RPC_URL.
+          # If unset, the script falls back to the public mainnet-beta RPC,
+          # which is fine for the single getVoteAccounts call this needs.
+          RPC_URL: ${{ secrets.RPC_URL }}
+        run: python3 refresh.py
+
+      - name: Commit + push if data changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "no data change — skipping commit"
+          else
+            ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+            git commit -m "data: refresh blacklist ($ts)"
+            git push
+          fi

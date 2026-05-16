@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-05-16T02:39:17Z",
+  "source": "https://validator-bonds-api.marinade.finance/protected-events",
+  "epoch_range": [
+    807,
+    971
+  ],
+  "counts": {
+    "total": 88,
+    "hard": 65,
+    "soft": 23
+  },
+  "active_validators": 30,
+  "deregistered_validators": 58,
+  "total_slashed_sol": 7286.52,
+  "currently_staked_sol": 4803226.7
+}
