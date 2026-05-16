@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-16T02:53:26Z",
+  "generated_at": "2026-05-16T02:58:22Z",
   "source": "https://validator-bonds-api.marinade.finance/protected-events",
   "latest_hard_epoch": 946,
   "latest_soft_epoch": 971,
@@ -29,7 +29,7 @@
       "epochs_since_last_slash": 25,
       "current_stake_sol": 144646.7101,
       "commission_pct": 5,
-      "last_vote_slot": 420032988,
+      "last_vote_slot": 420033731,
       "is_active": true
     },
     {
@@ -51,7 +51,7 @@
       "epochs_since_last_slash": 25,
       "current_stake_sol": 206525.7973,
       "commission_pct": 0,
-      "last_vote_slot": 420032988,
+      "last_vote_slot": 420033731,
       "is_active": true
     },
     {
@@ -73,7 +73,7 @@
       "epochs_since_last_slash": 25,
       "current_stake_sol": 62135.4601,
       "commission_pct": 0,
-      "last_vote_slot": 420032988,
+      "last_vote_slot": 420033731,
       "is_active": true
     },
     {
@@ -101,7 +101,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 133457.8913,
       "commission_pct": 5,
-      "last_vote_slot": 420032988,
+      "last_vote_slot": 420033731,
       "is_active": true
     },
     {
@@ -127,7 +127,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 65500.0488,
       "commission_pct": 0,
-      "last_vote_slot": 420032987,
+      "last_vote_slot": 420033731,
       "is_active": true
     }
   ]

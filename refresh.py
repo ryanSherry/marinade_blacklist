@@ -68,21 +68,37 @@ def http_get_json(url: str, *, timeout: int = 60, retries: int = 3) -> Any:
     raise RuntimeError(f"GET {url} failed after {retries} attempts: {last_exc}")
 
 
-def rpc_call(method: str, params: list, *, timeout: int = 60) -> Any:
-    """Solana JSON-RPC POST.  Returns the ``result`` field on success."""
+def rpc_call(method: str, params: list, *, timeout: int = 90,
+             retries: int = 3) -> Any:
+    """Solana JSON-RPC POST with retries.
+
+    The public mainnet-beta RPC times out fairly often on the heavier
+    methods (getVoteAccounts returns ~1 MB).  Retry with backoff so a
+    transient timeout doesn't blank the blacklist for an hour.
+    """
     body = json.dumps({
         "jsonrpc": "2.0", "id": 1, "method": method, "params": params,
     }).encode()
-    req = Request(
-        RPC_URL, data=body,
-        headers={"Content-Type": "application/json"},
-        method="POST",
+    last_exc: Exception | None = None
+    for attempt in range(retries):
+        if attempt > 0:
+            time.sleep(2 ** attempt)
+        try:
+            req = Request(
+                RPC_URL, data=body,
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with urlopen(req, timeout=timeout) as resp:
+                payload = json.loads(resp.read())
+            if "error" in payload:
+                raise RuntimeError(f"RPC error: {payload['error']}")
+            return payload.get("result")
+        except Exception as exc:
+            last_exc = exc
+    raise RuntimeError(
+        f"RPC {method} failed after {retries} attempts: {last_exc}"
     )
-    with urlopen(req, timeout=timeout) as resp:
-        payload = json.loads(resp.read())
-    if "error" in payload:
-        raise RuntimeError(f"RPC error: {payload['error']}")
-    return payload.get("result")
 
 
 def fetch_protected_events() -> list[dict]:
@@ -187,47 +203,54 @@ def write_outputs(records: list[dict]) -> None:
     all_epochs = sorted({e for r in records for e in r.get("slashed_epochs", [])})
     epoch_range = [all_epochs[0], all_epochs[-1]] if all_epochs else [None, None]
 
-    # Primary lists exclude inactive validators (deregistered, no
-    # current stake, no leader slots — can't sandwich anyone).  The
-    # full historical set is preserved in historical.json and the
-    # dated history/ snapshots for audit / trend work.
-    active_records = sorted(
-        [r for r in records if r.get("is_active")],
+    # Primary lists keep only the CURRENTLY-ENFORCED blacklist:
+    #   is_active=true (validator still operational) AND
+    #   still_blacklisted=true (in Marinade's most recent enforcement batch)
+    # Rehabilitated validators (slashed before, removed from latest
+    # batch) and deregistered ones move to other files.  This keeps
+    # blacklist.json honest — if Marinade un-blacklists, we drop them.
+    blacklist_records = sorted(
+        [r for r in records if r.get("is_active") and r.get("still_blacklisted")],
+        key=lambda r: (-int(r["slashed_lamports"]), r["vote_account"]),
+    )
+    active_rehabilitated = sorted(
+        [r for r in records if r.get("is_active") and not r.get("still_blacklisted")],
         key=lambda r: (-int(r["slashed_lamports"]), r["vote_account"]),
     )
     inactive_records = sorted(
         [r for r in records if not r.get("is_active")],
         key=lambda r: (-int(r["slashed_lamports"]), r["vote_account"]),
     )
+    active_records = blacklist_records + active_rehabilitated  # used below
 
     full = {
         "generated_at": now_iso,
         "source": MARINADE_API,
         "methodology": (
-            "Events fetched from Marinade Finance's validator-bonds "
-            "protected-events feed.  BlacklistPenalty = hard severity "
-            "(definitively slashed for being on SAM blacklist).  "
-            "BondRiskFee = soft severity (flagged, risk fee charged).  "
-            "Other reasons (Bidding, ProtectedEvent, PriorityFee, "
-            "BidTooLowPenalty) are NOT in this list.  "
-            "Inactive (deregistered) validators are excluded from this "
-            "file — see historical.json for the full historical set."
+            "The currently-enforced Marinade SAM blacklist.  Every "
+            "validator here is (a) still operational and (b) appears "
+            "in Marinade's most recent enforcement batch for its "
+            "reason type.  Validators that Marinade has removed from "
+            "active enforcement (rehabilitated) drop out of this file "
+            "automatically — see rehabilitated.json for those.  Deregis"
+            "tered validators are excluded entirely — see historical."
+            "json for the full audit trail."
         ),
         "epoch_range": epoch_range,
         "counts": {
-            "total": len(active_records),
-            "hard": sum(1 for r in active_records if r["severity"] == "hard"),
-            "soft": sum(1 for r in active_records if r["severity"] == "soft"),
+            "total": len(blacklist_records),
+            "hard": sum(1 for r in blacklist_records if r["severity"] == "hard"),
+            "soft": sum(1 for r in blacklist_records if r["severity"] == "soft"),
         },
-        "validators": active_records,
+        "validators": blacklist_records,
     }
 
     (DATA_DIR / "blacklist.json").write_text(
         json.dumps(full, indent=2, sort_keys=False) + "\n"
     )
 
-    # Hard-only subset of active validators
-    hard_records = [r for r in active_records if r["severity"] == "hard"]
+    # Hard-only subset of the currently-enforced blacklist
+    hard_records = [r for r in blacklist_records if r["severity"] == "hard"]
     hard = {**full,
             "counts": {"total": len(hard_records), "hard": len(hard_records), "soft": 0},
             "validators": hard_records}
@@ -275,7 +298,7 @@ def write_outputs(records: list[dict]) -> None:
     with open(DATA_DIR / "blacklist.csv", "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=csv_fields, extrasaction="ignore")
         w.writeheader()
-        for r in full["validators"]:  # active-only
+        for r in full["validators"]:  # currently-enforced only
             row = dict(r)
             row["reasons"] = ",".join(r.get("reasons", []))
             w.writerow(row)
@@ -291,17 +314,19 @@ def write_outputs(records: list[dict]) -> None:
         items = sorted(set(s for s in items if s))
         (DATA_DIR / name).write_text("\n".join(items) + ("\n" if items else ""))
 
-    # Plain-text lists default to ACTIVE-only (the routing-relevant set).
+    # Plain-text lists = the CURRENTLY-ENFORCED blacklist only
+    # (active + still_blacklisted=true).  Validators removed from
+    # Marinade's enforcement automatically drop from these files.
     write_lines("vote_accounts_hard.txt",
-                [r["vote_account"] for r in active_records
+                [r["vote_account"] for r in blacklist_records
                  if r["severity"] == "hard"])
     write_lines("vote_accounts_all.txt",
-                [r["vote_account"] for r in active_records])
+                [r["vote_account"] for r in blacklist_records])
     write_lines("identities_hard.txt",
-                [r["validator_identity"] for r in active_records
+                [r["validator_identity"] for r in blacklist_records
                  if r["severity"] == "hard" and r["validator_identity"]])
     write_lines("identities_all.txt",
-                [r["validator_identity"] for r in active_records
+                [r["validator_identity"] for r in blacklist_records
                  if r["validator_identity"]])
 
     # ── Derived endpoint files (each optimised for one query pattern) ──
@@ -372,27 +397,26 @@ def write_outputs(records: list[dict]) -> None:
         }, indent=2) + "\n"
     )
 
-    # rehabilitated.json — validators that were slashed historically
-    # but no longer appear in recent enforcement.  These have come OFF
-    # the blacklist (Marinade no longer enforcing against them).
-    rehabilitated = [
-        r for r in all_records
-        if not r.get("still_blacklisted")
-        and (r.get("epochs_since_last_slash") or 0) >= 5
-    ]
+    # rehabilitated.json — actively-operating validators that were
+    # slashed in the past but no longer appear in the latest
+    # enforcement batch.  They've come off the blacklist
+    # automatically because Marinade is no longer enforcing against
+    # them.  Their slashing history is preserved here for visibility
+    # (audit / "do they have a sketchy past?" queries).
     (DATA_DIR / "rehabilitated.json").write_text(
         json.dumps({
             "generated_at": now_iso,
             "source": MARINADE_API,
-            "count": len(rehabilitated),
+            "count": len(active_rehabilitated),
             "note": (
-                "Validators that were slashed in the past but have not "
-                "appeared in the LATEST enforcement batch for their "
-                "reason type.  Marinade has effectively removed them "
-                "from active blacklist enforcement, though their "
-                "historical slashings are preserved here."
+                "Active validators that were slashed in the past but "
+                "are NOT in Marinade's latest enforcement batch — "
+                "effectively removed from active blacklist by Marinade.  "
+                "These are NOT in blacklist.json — they show here so "
+                "consumers can still see who has a past offense even "
+                "though they're not currently enforced against."
             ),
-            "validators": rehabilitated,
+            "validators": active_rehabilitated,
         }, indent=2) + "\n"
     )
 
@@ -538,6 +562,31 @@ def main() -> int:
           file=sys.stderr)
 
     records = list(by_vote.values())
+
+    # Fail-safe: if every validator came back is_active=False AND a
+    # prior run found a non-empty blacklist on disk, that's a strong
+    # signal getVoteAccounts failed/returned partial data — keep
+    # existing files rather than wiping them.  Exit non-zero so the
+    # GitHub Action skips the commit.
+    none_active = all(not r.get("is_active") for r in records)
+    if none_active and records:
+        prior_path = DATA_DIR / "blacklist.json"
+        if prior_path.exists():
+            try:
+                prior = json.loads(prior_path.read_text())
+                prior_count = prior.get("counts", {}).get("total", 0)
+            except Exception:
+                prior_count = 0
+            if prior_count > 0:
+                print(
+                    f"ERROR: getVoteAccounts returned no active validators, "
+                    f"but prior blacklist had {prior_count}.  Refusing to "
+                    f"overwrite — exiting non-zero so the workflow skips "
+                    f"the commit.",
+                    file=sys.stderr,
+                )
+                return 1
+
     write_outputs(records)
     print("done.", file=sys.stderr)
     return 0
