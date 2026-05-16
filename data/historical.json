@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-16T02:58:22Z",
+  "generated_at": "2026-05-16T03:09:16Z",
   "source": "https://validator-bonds-api.marinade.finance/protected-events",
   "note": "Every validator that has ever been slashed by Marinade for blacklist/risk reasons, including those that have since been deregistered (is_active=false).  For current routing-relevant decisions use blacklist.json \u2014 this file is the full audit trail.",
   "epoch_range": [
@@ -21,6 +21,17 @@
       "slashed_lamports": 75688920734,
       "slashed_sol": 75.6889,
       "event_count": 7,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          962,
+          963,
+          965,
+          966,
+          967,
+          971
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -39,7 +50,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 133457.8913,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -49,6 +60,11 @@
       "slashed_lamports": 49032041341,
       "slashed_sol": 49.032,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          946
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -61,7 +77,7 @@
       "epochs_since_last_slash": 25,
       "current_stake_sol": 206525.7973,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -71,6 +87,11 @@
       "slashed_lamports": 32358840400,
       "slashed_sol": 32.3588,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          946
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -83,7 +104,7 @@
       "epochs_since_last_slash": 25,
       "current_stake_sol": 144646.7101,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -93,6 +114,15 @@
       "slashed_lamports": 3218617271,
       "slashed_sol": 3.2186,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963,
+          971
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -109,7 +139,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 65500.0488,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -119,6 +149,11 @@
       "slashed_lamports": 102379380,
       "slashed_sol": 0.1024,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          946
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -131,7 +166,7 @@
       "epochs_since_last_slash": 25,
       "current_stake_sol": 62135.4601,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -141,6 +176,15 @@
       "slashed_lamports": 106600166973,
       "slashed_sol": 106.6002,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          965,
+          966
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -157,7 +201,7 @@
       "epochs_since_last_slash": 5,
       "current_stake_sol": 412360.448,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -167,6 +211,15 @@
       "slashed_lamports": 88569309164,
       "slashed_sol": 88.5693,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          965,
+          966
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -183,7 +236,7 @@
       "epochs_since_last_slash": 5,
       "current_stake_sol": 329846.2274,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -193,6 +246,11 @@
       "slashed_lamports": 83770796743,
       "slashed_sol": 83.7708,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -205,7 +263,7 @@
       "epochs_since_last_slash": 164,
       "current_stake_sol": 15798.1222,
       "commission_pct": 100,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -215,6 +273,14 @@
       "slashed_lamports": 78765836707,
       "slashed_sol": 78.7658,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          962,
+          965,
+          966
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -230,7 +296,7 @@
       "epochs_since_last_slash": 5,
       "current_stake_sol": 423746.3044,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -240,6 +306,11 @@
       "slashed_lamports": 77415739484,
       "slashed_sol": 77.4157,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -252,7 +323,7 @@
       "epochs_since_last_slash": 164,
       "current_stake_sol": 66633.4584,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -262,6 +333,14 @@
       "slashed_lamports": 65811778724,
       "slashed_sol": 65.8118,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          962,
+          963,
+          965
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -277,7 +356,7 @@
       "epochs_since_last_slash": 6,
       "current_stake_sol": 345469.0003,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -287,6 +366,12 @@
       "slashed_lamports": 44488041437,
       "slashed_sol": 44.488,
       "event_count": 2,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          966,
+          967
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -300,7 +385,7 @@
       "epochs_since_last_slash": 4,
       "current_stake_sol": 509543.654,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -310,6 +395,15 @@
       "slashed_lamports": 41395418122,
       "slashed_sol": 41.3954,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          962,
+          965,
+          966,
+          967
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -326,7 +420,7 @@
       "epochs_since_last_slash": 4,
       "current_stake_sol": 195653.1913,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -336,6 +430,17 @@
       "slashed_lamports": 34324031244,
       "slashed_sol": 34.324,
       "event_count": 7,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          964,
+          965,
+          966,
+          967,
+          968,
+          969,
+          970
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -354,7 +459,7 @@
       "epochs_since_last_slash": 1,
       "current_stake_sol": 77728.3528,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -364,6 +469,13 @@
       "slashed_lamports": 23144064327,
       "slashed_sol": 23.1441,
       "event_count": 3,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -378,7 +490,7 @@
       "epochs_since_last_slash": 9,
       "current_stake_sol": 298675.0848,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -388,6 +500,16 @@
       "slashed_lamports": 21663941712,
       "slashed_sol": 21.6639,
       "event_count": 6,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          964,
+          965,
+          966,
+          967,
+          968
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -405,7 +527,7 @@
       "epochs_since_last_slash": 3,
       "current_stake_sol": 109609.9465,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -415,6 +537,14 @@
       "slashed_lamports": 12313101238,
       "slashed_sol": 12.3131,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -430,7 +560,7 @@
       "epochs_since_last_slash": 8,
       "current_stake_sol": 29341.6576,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -440,6 +570,13 @@
       "slashed_lamports": 10933340545,
       "slashed_sol": 10.9333,
       "event_count": 3,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -454,7 +591,7 @@
       "epochs_since_last_slash": 9,
       "current_stake_sol": 139764.725,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -464,6 +601,11 @@
       "slashed_lamports": 9528310576,
       "slashed_sol": 9.5283,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -476,7 +618,7 @@
       "epochs_since_last_slash": 11,
       "current_stake_sol": 273660.0739,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -486,6 +628,14 @@
       "slashed_lamports": 9005683989,
       "slashed_sol": 9.0057,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          964
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -501,7 +651,7 @@
       "epochs_since_last_slash": 7,
       "current_stake_sol": 165802.1911,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -511,6 +661,11 @@
       "slashed_lamports": 8655980844,
       "slashed_sol": 8.656,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -523,7 +678,7 @@
       "epochs_since_last_slash": 11,
       "current_stake_sol": 107667.4825,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -533,6 +688,14 @@
       "slashed_lamports": 7533194028,
       "slashed_sol": 7.5332,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -548,7 +711,7 @@
       "epochs_since_last_slash": 8,
       "current_stake_sol": 148090.7148,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -558,6 +721,11 @@
       "slashed_lamports": 6747590446,
       "slashed_sol": 6.7476,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          970
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -570,7 +738,7 @@
       "epochs_since_last_slash": 1,
       "current_stake_sol": 207094.1653,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -580,6 +748,15 @@
       "slashed_lamports": 5993316447,
       "slashed_sol": 5.9933,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963,
+          964
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -596,7 +773,7 @@
       "epochs_since_last_slash": 7,
       "current_stake_sol": 35084.8537,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -606,6 +783,14 @@
       "slashed_lamports": 4873414484,
       "slashed_sol": 4.8734,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -621,7 +806,7 @@
       "epochs_since_last_slash": 8,
       "current_stake_sol": 62408.2101,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -631,6 +816,15 @@
       "slashed_lamports": 2801729887,
       "slashed_sol": 2.8017,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963,
+          964
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -647,7 +841,7 @@
       "epochs_since_last_slash": 7,
       "current_stake_sol": 46332.8142,
       "commission_pct": 0,
-      "last_vote_slot": 420033730,
+      "last_vote_slot": 420035362,
       "is_active": true
     },
     {
@@ -657,6 +851,11 @@
       "slashed_lamports": 1701936760,
       "slashed_sol": 1.7019,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -669,7 +868,7 @@
       "epochs_since_last_slash": 11,
       "current_stake_sol": 79186.5243,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -679,6 +878,11 @@
       "slashed_lamports": 54501566,
       "slashed_sol": 0.0545,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          841
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -691,7 +895,7 @@
       "epochs_since_last_slash": 130,
       "current_stake_sol": 11033.2356,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -701,6 +905,11 @@
       "slashed_lamports": 27253364,
       "slashed_sol": 0.0273,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -713,7 +922,7 @@
       "epochs_since_last_slash": 142,
       "current_stake_sol": 76407.2226,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035362,
       "is_active": true
     },
     {
@@ -723,6 +932,11 @@
       "slashed_lamports": 14867716,
       "slashed_sol": 0.0149,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          836
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -735,7 +949,7 @@
       "epochs_since_last_slash": 135,
       "current_stake_sol": 23838.6594,
       "commission_pct": 0,
-      "last_vote_slot": 420033730,
+      "last_vote_slot": 420035362,
       "is_active": true
     },
     {
@@ -745,6 +959,11 @@
       "slashed_lamports": 310042641065,
       "slashed_sol": 310.0426,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -767,6 +986,11 @@
       "slashed_lamports": 270133346107,
       "slashed_sol": 270.1333,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -789,6 +1013,11 @@
       "slashed_lamports": 255525410175,
       "slashed_sol": 255.5254,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -811,6 +1040,11 @@
       "slashed_lamports": 201093588407,
       "slashed_sol": 201.0936,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -833,6 +1067,11 @@
       "slashed_lamports": 201015996416,
       "slashed_sol": 201.016,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -855,6 +1094,11 @@
       "slashed_lamports": 200804369671,
       "slashed_sol": 200.8044,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -877,6 +1121,11 @@
       "slashed_lamports": 200360460886,
       "slashed_sol": 200.3605,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -899,6 +1148,11 @@
       "slashed_lamports": 200215013796,
       "slashed_sol": 200.215,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -921,6 +1175,11 @@
       "slashed_lamports": 199377914327,
       "slashed_sol": 199.3779,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -943,6 +1202,11 @@
       "slashed_lamports": 198453073500,
       "slashed_sol": 198.4531,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -965,6 +1229,11 @@
       "slashed_lamports": 196522339477,
       "slashed_sol": 196.5223,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -987,6 +1256,11 @@
       "slashed_lamports": 191354730251,
       "slashed_sol": 191.3547,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1009,6 +1283,11 @@
       "slashed_lamports": 189237687275,
       "slashed_sol": 189.2377,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1031,6 +1310,11 @@
       "slashed_lamports": 184130850681,
       "slashed_sol": 184.1309,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          808
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1053,6 +1337,11 @@
       "slashed_lamports": 182894486185,
       "slashed_sol": 182.8945,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1075,6 +1364,11 @@
       "slashed_lamports": 174339906508,
       "slashed_sol": 174.3399,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          808
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1097,6 +1391,11 @@
       "slashed_lamports": 174015858525,
       "slashed_sol": 174.0159,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1119,6 +1418,11 @@
       "slashed_lamports": 169915925398,
       "slashed_sol": 169.9159,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1141,6 +1445,11 @@
       "slashed_lamports": 167049271164,
       "slashed_sol": 167.0493,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1163,6 +1472,11 @@
       "slashed_lamports": 166605040263,
       "slashed_sol": 166.605,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1185,6 +1499,11 @@
       "slashed_lamports": 161742369788,
       "slashed_sol": 161.7424,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1207,6 +1526,11 @@
       "slashed_lamports": 161035312544,
       "slashed_sol": 161.0353,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1229,6 +1553,11 @@
       "slashed_lamports": 160750132516,
       "slashed_sol": 160.7501,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1251,6 +1580,11 @@
       "slashed_lamports": 160689610441,
       "slashed_sol": 160.6896,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1273,6 +1607,11 @@
       "slashed_lamports": 152067040620,
       "slashed_sol": 152.067,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1295,6 +1634,11 @@
       "slashed_lamports": 125684189018,
       "slashed_sol": 125.6842,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          808
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1317,6 +1661,11 @@
       "slashed_lamports": 124537386689,
       "slashed_sol": 124.5374,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1339,6 +1688,11 @@
       "slashed_lamports": 120392954242,
       "slashed_sol": 120.393,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1361,6 +1715,11 @@
       "slashed_lamports": 120099565803,
       "slashed_sol": 120.0996,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          808
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1383,6 +1742,11 @@
       "slashed_lamports": 118857742521,
       "slashed_sol": 118.8577,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1405,6 +1769,11 @@
       "slashed_lamports": 105217161630,
       "slashed_sol": 105.2172,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1427,6 +1796,11 @@
       "slashed_lamports": 101597722179,
       "slashed_sol": 101.5977,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1449,6 +1823,11 @@
       "slashed_lamports": 100891290777,
       "slashed_sol": 100.8913,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          808
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1471,6 +1850,11 @@
       "slashed_lamports": 100335376863,
       "slashed_sol": 100.3354,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1493,6 +1877,11 @@
       "slashed_lamports": 79728117349,
       "slashed_sol": 79.7281,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          825
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1515,6 +1904,11 @@
       "slashed_lamports": 75266443843,
       "slashed_sol": 75.2664,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1537,6 +1931,11 @@
       "slashed_lamports": 69500884734,
       "slashed_sol": 69.5009,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          808
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1559,6 +1958,11 @@
       "slashed_lamports": 62969577500,
       "slashed_sol": 62.9696,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1581,6 +1985,11 @@
       "slashed_lamports": 54285758958,
       "slashed_sol": 54.2858,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          808
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1603,6 +2012,11 @@
       "slashed_lamports": 25566613562,
       "slashed_sol": 25.5666,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          825
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1625,6 +2039,11 @@
       "slashed_lamports": 23747237180,
       "slashed_sol": 23.7472,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          825
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1647,6 +2066,11 @@
       "slashed_lamports": 20131915380,
       "slashed_sol": 20.1319,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          825
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1669,6 +2093,11 @@
       "slashed_lamports": 19090613297,
       "slashed_sol": 19.0906,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1691,6 +2120,11 @@
       "slashed_lamports": 17126156188,
       "slashed_sol": 17.1262,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          825
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1713,6 +2147,11 @@
       "slashed_lamports": 16728469023,
       "slashed_sol": 16.7285,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          808
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1735,6 +2174,11 @@
       "slashed_lamports": 12381219379,
       "slashed_sol": 12.3812,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          825
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1757,6 +2201,11 @@
       "slashed_lamports": 11683438719,
       "slashed_sol": 11.6834,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          825
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1779,6 +2228,11 @@
       "slashed_lamports": 11661700129,
       "slashed_sol": 11.6617,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1801,6 +2255,11 @@
       "slashed_lamports": 9456254590,
       "slashed_sol": 9.4563,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          825
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1823,6 +2282,15 @@
       "slashed_lamports": 9079794676,
       "slashed_sol": 9.0798,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          962,
+          967,
+          968,
+          969
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -1849,6 +2317,11 @@
       "slashed_lamports": 5746721228,
       "slashed_sol": 5.7467,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          825
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1871,6 +2344,11 @@
       "slashed_lamports": 5468356582,
       "slashed_sol": 5.4684,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          825
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1893,6 +2371,11 @@
       "slashed_lamports": 2922747961,
       "slashed_sol": 2.9227,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1915,6 +2398,11 @@
       "slashed_lamports": 354492001,
       "slashed_sol": 0.3545,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          825
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1937,6 +2425,11 @@
       "slashed_lamports": 42701291,
       "slashed_sol": 0.0427,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          841
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1959,6 +2452,11 @@
       "slashed_lamports": 30656834,
       "slashed_sol": 0.0307,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          841
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -1981,6 +2479,11 @@
       "slashed_lamports": 20548204,
       "slashed_sol": 0.0205,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          841
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -2003,6 +2506,11 @@
       "slashed_lamports": 11326327,
       "slashed_sol": 0.0113,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          841
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],

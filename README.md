@@ -29,6 +29,65 @@ banned = set(urllib.request.urlopen(
 ).read().decode().split())
 ```
 
+## Using this for MEV protection
+
+If you're building MEV / sandwich protection into a transaction-landing
+service, **use these two files**:
+
+| File | Why |
+|------|-----|
+| `data/identities_hard.txt` | Validator IDENTITIES (node pubkeys) of validators currently on Marinade's SAM blacklist for sandwich-related slashing. Compare against the leader schedule before routing. |
+| `data/health.json` | Freshness check. If `last_successful_refresh` is more than ~2 hours old, our pipeline is degraded — fail open or use a cached copy. |
+
+```python
+import urllib.request, json, time
+
+LIST = "https://raw.githubusercontent.com/ryanSherry/marinade_blacklist/main/data/identities_hard.txt"
+HEALTH = "https://raw.githubusercontent.com/ryanSherry/marinade_blacklist/main/data/health.json"
+
+# Refresh once an hour
+def load_blacklist():
+    health = json.loads(urllib.request.urlopen(HEALTH).read())
+    last = health["last_successful_refresh"]
+    # ... validate freshness here, decide whether to use ...
+    raw = urllib.request.urlopen(LIST).read().decode()
+    return set(raw.split())
+
+BANNED_IDENTITIES = load_blacklist()
+
+# Before routing a transaction
+def should_route_through(leader_identity: str) -> bool:
+    return leader_identity not in BANNED_IDENTITIES
+```
+
+### MEV-protection-specific guidance
+
+- **Use the `_hard` variants, NOT `_all`.** Soft severity (`BondRiskFee`)
+  is for risky bidding behavior, not necessarily sandwiching — including
+  it in MEV protection causes false positives.
+- **Use `identities_*.txt`, not `vote_accounts_*.txt`.** The Solana leader
+  schedule + gossip data uses validator identity (node pubkey). You
+  compare leaders against identity, so that's the matching key.
+- **Validators automatically drop off when Marinade un-blacklists them**.
+  No manual maintenance — the hourly refresh handles it.
+- **Fail open on staleness.** If `health.json` is more than a few hours
+  old, the upstream pipeline is down. Don't aggressively block
+  transactions based on stale data.
+
+### Limitations to know
+
+- **Marinade-only**: This list catches validators slashed by Marinade's
+  SAM. A sandwicher with no Marinade delegation wouldn't appear. For
+  fuller coverage, combine with other community lists (Vincibles,
+  Trillium reports). This is a high-precision but not exhaustive source.
+- **Batch enforcement**: Marinade enforces `BlacklistPenalty` in batches,
+  not every epoch. Today's `epochs_since_latest_hard` is 25 — that's not
+  unusual. Monitor for gaps > 50 epochs as a sign Marinade's process has
+  stopped.
+- **Inactive validators excluded**: We only flag validators still
+  operational. Deregistered validators (no leader slots, no stake) can't
+  sandwich anyone; they live in `historical.json` for audit only.
+
 ## File reference
 
 All files live in `data/` and are auto-updated hourly.
@@ -50,7 +109,8 @@ All files live in `data/` and are auto-updated hourly.
 | File | Contents |
 |------|---------|
 | **`rehabilitated.json`** | Active validators slashed in the past but no longer in the latest enforcement batch — Marinade has removed them from active enforcement. Their history is preserved here so consumers can see "this wallet has a past offense even though it's not currently enforced against." |
-| **`stats.json`** | Aggregate counters — `active_counts`, `historical_counts`, total slashed SOL, currently-staked SOL across blacklisted validators. Useful for dashboards / status badges. |
+| **`stats.json`** | Aggregate counters — `active_counts`, `historical_counts`, `latest_enforcement_per_reason`, total slashed SOL. Useful for dashboards / status badges. |
+| **`health.json`** | One-shot pipeline-health view. Includes `last_successful_refresh`, `marinade_events_pulled`, `blacklist_size`, and `epochs_since_latest_hard`/`_soft`. Consumers should check this before trusting the lists — stale `last_successful_refresh` = pipeline degraded. |
 | **`recent.json`** | Top 50 currently-blacklisted validators sorted by `last_slashed_epoch` desc. Most-recently-enforced first. |
 | **`by_epoch.json`** | `{ epoch: [vote_accounts] }` map. For time-series queries. Includes all historical validators (active and deregistered). |
 
@@ -180,17 +240,18 @@ workflow will use it automatically.
 
 ## Robustness
 
-The script has two protections against bad refresh runs:
+The script has three protections against bad refresh runs:
 
-1. **RPC retries**: `getVoteAccounts` retries 3× with exponential
-   backoff. The public mainnet-beta RPC times out occasionally on the
-   ~1 MB response, so retries usually recover.
-2. **Empty-write guard**: if every validator comes back
+1. **Multi-RPC fallback**: tries a primary RPC then falls through a
+   chain of free public providers (Solana foundation, PublicNode,
+   Ankr). All public — no private endpoints exposed in the workflow.
+2. **Per-URL retries**: 2 attempts per RPC with exponential backoff
+   before falling through to the next URL.
+3. **Empty-write guard**: if every validator comes back
    `is_active=False` AND a prior `blacklist.json` had entries, the
    script exits non-zero rather than overwriting the data with an
    empty result. The workflow then skips the commit and preserves the
-   last good state. This way a transient RPC outage doesn't blank the
-   list for an hour.
+   last good state.
 
 ## Methodology details
 

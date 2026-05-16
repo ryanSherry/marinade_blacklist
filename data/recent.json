@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-16T02:58:22Z",
+  "generated_at": "2026-05-16T03:09:16Z",
   "epoch_range": [
     807,
     971
@@ -13,6 +13,17 @@
       "slashed_lamports": 75688920734,
       "slashed_sol": 75.6889,
       "event_count": 7,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          962,
+          963,
+          965,
+          966,
+          967,
+          971
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -31,7 +42,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 133457.8913,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -41,6 +52,15 @@
       "slashed_lamports": 3218617271,
       "slashed_sol": 3.2186,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963,
+          971
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -57,7 +77,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 65500.0488,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -67,6 +87,17 @@
       "slashed_lamports": 34324031244,
       "slashed_sol": 34.324,
       "event_count": 7,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          964,
+          965,
+          966,
+          967,
+          968,
+          969,
+          970
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -85,7 +116,7 @@
       "epochs_since_last_slash": 1,
       "current_stake_sol": 77728.3528,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -95,6 +126,11 @@
       "slashed_lamports": 6747590446,
       "slashed_sol": 6.7476,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          970
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -107,7 +143,7 @@
       "epochs_since_last_slash": 1,
       "current_stake_sol": 207094.1653,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -117,6 +153,16 @@
       "slashed_lamports": 21663941712,
       "slashed_sol": 21.6639,
       "event_count": 6,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          964,
+          965,
+          966,
+          967,
+          968
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -134,7 +180,7 @@
       "epochs_since_last_slash": 3,
       "current_stake_sol": 109609.9465,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -144,6 +190,12 @@
       "slashed_lamports": 44488041437,
       "slashed_sol": 44.488,
       "event_count": 2,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          966,
+          967
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -157,7 +209,7 @@
       "epochs_since_last_slash": 4,
       "current_stake_sol": 509543.654,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -167,6 +219,15 @@
       "slashed_lamports": 41395418122,
       "slashed_sol": 41.3954,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          962,
+          965,
+          966,
+          967
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -183,7 +244,7 @@
       "epochs_since_last_slash": 4,
       "current_stake_sol": 195653.1913,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -193,6 +254,15 @@
       "slashed_lamports": 106600166973,
       "slashed_sol": 106.6002,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          965,
+          966
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -209,7 +279,7 @@
       "epochs_since_last_slash": 5,
       "current_stake_sol": 412360.448,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -219,6 +289,15 @@
       "slashed_lamports": 88569309164,
       "slashed_sol": 88.5693,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          965,
+          966
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -235,7 +314,7 @@
       "epochs_since_last_slash": 5,
       "current_stake_sol": 329846.2274,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -245,6 +324,14 @@
       "slashed_lamports": 78765836707,
       "slashed_sol": 78.7658,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          962,
+          965,
+          966
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -260,7 +347,7 @@
       "epochs_since_last_slash": 5,
       "current_stake_sol": 423746.3044,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -270,6 +357,14 @@
       "slashed_lamports": 65811778724,
       "slashed_sol": 65.8118,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          962,
+          963,
+          965
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -285,7 +380,7 @@
       "epochs_since_last_slash": 6,
       "current_stake_sol": 345469.0003,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -295,6 +390,14 @@
       "slashed_lamports": 9005683989,
       "slashed_sol": 9.0057,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          964
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -310,7 +413,7 @@
       "epochs_since_last_slash": 7,
       "current_stake_sol": 165802.1911,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -320,6 +423,15 @@
       "slashed_lamports": 5993316447,
       "slashed_sol": 5.9933,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963,
+          964
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -336,7 +448,7 @@
       "epochs_since_last_slash": 7,
       "current_stake_sol": 35084.8537,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -346,6 +458,15 @@
       "slashed_lamports": 2801729887,
       "slashed_sol": 2.8017,
       "event_count": 5,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963,
+          964
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -362,7 +483,7 @@
       "epochs_since_last_slash": 7,
       "current_stake_sol": 46332.8142,
       "commission_pct": 0,
-      "last_vote_slot": 420033730,
+      "last_vote_slot": 420035362,
       "is_active": true
     },
     {
@@ -372,6 +493,14 @@
       "slashed_lamports": 12313101238,
       "slashed_sol": 12.3131,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -387,7 +516,7 @@
       "epochs_since_last_slash": 8,
       "current_stake_sol": 29341.6576,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -397,6 +526,14 @@
       "slashed_lamports": 7533194028,
       "slashed_sol": 7.5332,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -412,7 +549,7 @@
       "epochs_since_last_slash": 8,
       "current_stake_sol": 148090.7148,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -422,6 +559,14 @@
       "slashed_lamports": 4873414484,
       "slashed_sol": 4.8734,
       "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          963
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -437,7 +582,7 @@
       "epochs_since_last_slash": 8,
       "current_stake_sol": 62408.2101,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -447,6 +592,13 @@
       "slashed_lamports": 23144064327,
       "slashed_sol": 23.1441,
       "event_count": 3,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -461,7 +613,7 @@
       "epochs_since_last_slash": 9,
       "current_stake_sol": 298675.0848,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -471,6 +623,13 @@
       "slashed_lamports": 10933340545,
       "slashed_sol": 10.9333,
       "event_count": 3,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -485,7 +644,7 @@
       "epochs_since_last_slash": 9,
       "current_stake_sol": 139764.725,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -495,6 +654,11 @@
       "slashed_lamports": 9528310576,
       "slashed_sol": 9.5283,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -507,7 +671,7 @@
       "epochs_since_last_slash": 11,
       "current_stake_sol": 273660.0739,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -517,6 +681,11 @@
       "slashed_lamports": 8655980844,
       "slashed_sol": 8.656,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -529,7 +698,7 @@
       "epochs_since_last_slash": 11,
       "current_stake_sol": 107667.4825,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -539,6 +708,11 @@
       "slashed_lamports": 1701936760,
       "slashed_sol": 1.7019,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960
+        ]
+      },
       "reasons": [
         "BondRiskFee"
       ],
@@ -551,7 +725,7 @@
       "epochs_since_last_slash": 11,
       "current_stake_sol": 79186.5243,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -561,6 +735,11 @@
       "slashed_lamports": 49032041341,
       "slashed_sol": 49.032,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          946
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -573,7 +752,7 @@
       "epochs_since_last_slash": 25,
       "current_stake_sol": 206525.7973,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -583,6 +762,11 @@
       "slashed_lamports": 32358840400,
       "slashed_sol": 32.3588,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          946
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -595,7 +779,7 @@
       "epochs_since_last_slash": 25,
       "current_stake_sol": 144646.7101,
       "commission_pct": 5,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -605,6 +789,11 @@
       "slashed_lamports": 102379380,
       "slashed_sol": 0.1024,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          946
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -617,7 +806,7 @@
       "epochs_since_last_slash": 25,
       "current_stake_sol": 62135.4601,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -627,6 +816,11 @@
       "slashed_lamports": 54501566,
       "slashed_sol": 0.0545,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          841
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -639,7 +833,7 @@
       "epochs_since_last_slash": 130,
       "current_stake_sol": 11033.2356,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -649,6 +843,11 @@
       "slashed_lamports": 14867716,
       "slashed_sol": 0.0149,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          836
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -661,7 +860,7 @@
       "epochs_since_last_slash": 135,
       "current_stake_sol": 23838.6594,
       "commission_pct": 0,
-      "last_vote_slot": 420033730,
+      "last_vote_slot": 420035362,
       "is_active": true
     },
     {
@@ -671,6 +870,11 @@
       "slashed_lamports": 27253364,
       "slashed_sol": 0.0273,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          829
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -683,7 +887,7 @@
       "epochs_since_last_slash": 142,
       "current_stake_sol": 76407.2226,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035362,
       "is_active": true
     },
     {
@@ -693,6 +897,11 @@
       "slashed_lamports": 83770796743,
       "slashed_sol": 83.7708,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -705,7 +914,7 @@
       "epochs_since_last_slash": 164,
       "current_stake_sol": 15798.1222,
       "commission_pct": 100,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     },
     {
@@ -715,6 +924,11 @@
       "slashed_lamports": 77415739484,
       "slashed_sol": 77.4157,
       "event_count": 1,
+      "epochs_by_reason": {
+        "BlacklistPenalty": [
+          807
+        ]
+      },
       "reasons": [
         "BlacklistPenalty"
       ],
@@ -727,7 +941,7 @@
       "epochs_since_last_slash": 164,
       "current_stake_sol": 66633.4584,
       "commission_pct": 0,
-      "last_vote_slot": 420033731,
+      "last_vote_slot": 420035363,
       "is_active": true
     }
   ]

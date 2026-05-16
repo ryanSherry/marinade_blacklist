@@ -39,7 +39,22 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError
 
 MARINADE_API = "https://validator-bonds-api.marinade.finance/protected-events"
-RPC_URL = os.environ.get("RPC_URL", "https://api.mainnet-beta.solana.com")
+
+# RPC fallback chain.  All defaults are PUBLIC providers — no
+# private endpoints in this list.  Override the primary with the
+# RPC_URL env var (the GitHub Action wires this from a repo secret
+# if set; absent secret → empty env var → defaults to public).  If
+# the primary times out or errors, fall through to the alternatives.
+_RPC_OVERRIDE = (os.environ.get("RPC_URL") or "").strip()
+_PUBLIC_RPCS = (
+    "https://api.mainnet-beta.solana.com",   # Solana Foundation
+    "https://solana-rpc.publicnode.com",     # PublicNode (free)
+    "https://rpc.ankr.com/solana",           # Ankr (free)
+)
+RPC_FALLBACK_CHAIN: list[str] = (
+    ([_RPC_OVERRIDE] if _RPC_OVERRIDE else [])
+    + [u for u in _PUBLIC_RPCS if u != _RPC_OVERRIDE]
+)
 
 # Reason → severity mapping.  Reasons NOT listed here are ignored
 # (e.g. ``Bidding`` is normal SAM bid charging, not slashing).
@@ -69,35 +84,40 @@ def http_get_json(url: str, *, timeout: int = 60, retries: int = 3) -> Any:
 
 
 def rpc_call(method: str, params: list, *, timeout: int = 90,
-             retries: int = 3) -> Any:
-    """Solana JSON-RPC POST with retries.
+             retries_per_url: int = 2) -> Any:
+    """Solana JSON-RPC POST with multi-URL fallback + retries.
 
-    The public mainnet-beta RPC times out fairly often on the heavier
-    methods (getVoteAccounts returns ~1 MB).  Retry with backoff so a
-    transient timeout doesn't blank the blacklist for an hour.
+    Tries each URL in ``RPC_FALLBACK_CHAIN`` in order, with up to
+    ``retries_per_url`` attempts per URL before falling through.
+    Public RPCs are flaky — combining retries + fallback gives us a
+    reasonable shot at completing even when one provider is down.
     """
     body = json.dumps({
         "jsonrpc": "2.0", "id": 1, "method": method, "params": params,
     }).encode()
     last_exc: Exception | None = None
-    for attempt in range(retries):
-        if attempt > 0:
-            time.sleep(2 ** attempt)
-        try:
-            req = Request(
-                RPC_URL, data=body,
-                headers={"Content-Type": "application/json"},
-                method="POST",
-            )
-            with urlopen(req, timeout=timeout) as resp:
-                payload = json.loads(resp.read())
-            if "error" in payload:
-                raise RuntimeError(f"RPC error: {payload['error']}")
-            return payload.get("result")
-        except Exception as exc:
-            last_exc = exc
+    for url in RPC_FALLBACK_CHAIN:
+        for attempt in range(retries_per_url):
+            if attempt > 0:
+                time.sleep(2 ** attempt)
+            try:
+                req = Request(
+                    url, data=body,
+                    headers={"Content-Type": "application/json"},
+                    method="POST",
+                )
+                with urlopen(req, timeout=timeout) as resp:
+                    payload = json.loads(resp.read())
+                if "error" in payload:
+                    raise RuntimeError(f"RPC error: {payload['error']}")
+                return payload.get("result")
+            except Exception as exc:
+                last_exc = exc
+        print(f"  rpc fallback: {url} exhausted, trying next...",
+              file=sys.stderr)
     raise RuntimeError(
-        f"RPC {method} failed after {retries} attempts: {last_exc}"
+        f"RPC {method} failed across all "
+        f"{len(RPC_FALLBACK_CHAIN)} URLs: {last_exc}"
     )
 
 
@@ -121,11 +141,15 @@ def aggregate_events(events: list[dict]) -> dict[str, dict]:
     """Roll events up per (vote_account, severity).
 
     A validator that appears in both ``BlacklistPenalty`` and
-    ``BondRiskFee`` is recorded with severity=hard (the stricter wins).
+    ``BondRiskFee`` is recorded with severity=hard (the stricter wins),
+    but per-reason epoch sets are kept on each record so downstream
+    code can correctly compute the "latest enforcement epoch" per
+    reason without contamination across reasons.
     """
     by_vote: dict[str, dict] = {}
     for event in events:
-        sev = SEVERITY.get(reason_label(event.get("reason")))
+        reason = reason_label(event.get("reason"))
+        sev = SEVERITY.get(reason)
         if sev is None:
             continue
         vote = event.get("vote_account")
@@ -139,6 +163,7 @@ def aggregate_events(events: list[dict]) -> dict[str, dict]:
             "slashed_sol": 0.0,
             "event_count": 0,
             "epochs": set(),
+            "epochs_by_reason": defaultdict(set),
             "reasons": set(),
         })
         # Upgrade severity to hard if either severity hits hard.
@@ -147,8 +172,10 @@ def aggregate_events(events: list[dict]) -> dict[str, dict]:
         rec["slashed_lamports"] += int(event.get("amount", 0) or 0)
         rec["event_count"] += 1
         if event.get("epoch") is not None:
-            rec["epochs"].add(int(event["epoch"]))
-        rec["reasons"].add(reason_label(event.get("reason")))
+            ep = int(event["epoch"])
+            rec["epochs"].add(ep)
+            rec["epochs_by_reason"][reason].add(ep)
+        rec["reasons"].add(reason)
     for rec in by_vote.values():
         rec["slashed_sol"] = round(rec["slashed_lamports"] / 1e9, 4)
         epochs = sorted(rec["epochs"])
@@ -156,6 +183,10 @@ def aggregate_events(events: list[dict]) -> dict[str, dict]:
         rec["last_slashed_epoch"] = epochs[-1] if epochs else None
         rec["slashed_epochs"] = epochs
         rec["reasons"] = sorted(rec["reasons"])
+        # Convert per-reason epoch sets to sorted lists for JSON output.
+        rec["epochs_by_reason"] = {
+            r: sorted(s) for r, s in rec["epochs_by_reason"].items()
+        }
         rec.pop("epochs", None)
     return by_vote
 
@@ -194,7 +225,8 @@ def resolve_vote_account_info(vote_accounts: list[str]) -> dict[str, dict]:
     return mapping
 
 
-def write_outputs(records: list[dict]) -> None:
+def write_outputs(records: list[dict], events: list[dict],
+                  network_max_epoch: int) -> None:
     """Write the canonical blacklist files into ``data/``."""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     HISTORY_DIR.mkdir(parents=True, exist_ok=True)
@@ -335,23 +367,67 @@ def write_outputs(records: list[dict]) -> None:
     # Reports both the active-only headline numbers and the broader
     # historical totals so dashboards can show both.
     total_stake_sol = round(
-        sum(r.get("current_stake_sol") or 0 for r in active_records), 2
+        sum(r.get("current_stake_sol") or 0 for r in blacklist_records), 2
     )
+    # latest_enforcement_per_reason — operational signal.  If too many
+    # epochs have passed since the last enforcement of a given reason,
+    # either Marinade has stopped enforcing it OR their pipeline is
+    # broken — either way, consumers need to know.
+    latest_per_reason = {
+        # The latest_epoch_by_reason map was computed earlier when
+        # setting still_blacklisted on each record.  Re-derive here so
+        # this function is self-contained.
+        reason: max(
+            max(r.get("epochs_by_reason", {}).get(reason, [0]))
+            for r in records
+        )
+        for reason in ("BlacklistPenalty", "BondRiskFee")
+        if any(reason in (r.get("epochs_by_reason") or {}) for r in records)
+    }
     stats = {
         "generated_at": now_iso,
         "source": MARINADE_API,
         "epoch_range": epoch_range,
+        "latest_enforcement_per_reason": latest_per_reason,
         "active_counts": full["counts"],   # what blacklist.json shows
+        "rehabilitated_count": len(active_rehabilitated),
         "historical_counts": historical["counts"],
-        "currently_staked_sol": total_stake_sol,
-        "active_total_slashed_sol": round(
-            sum(r["slashed_lamports"] for r in active_records) / 1e9, 2
+        "blacklisted_stake_sol": total_stake_sol,
+        "blacklisted_total_slashed_sol": round(
+            sum(r["slashed_lamports"] for r in blacklist_records) / 1e9, 2
         ),
         "historical_total_slashed_sol": round(
             sum(r["slashed_lamports"] for r in all_records) / 1e9, 2
         ),
     }
     (DATA_DIR / "stats.json").write_text(json.dumps(stats, indent=2) + "\n")
+
+    # health.json — one-shot view consumers can check to detect stale
+    # data or recent failures.  This file is written on every
+    # successful run; if the workflow fails or skips a commit, this
+    # file's generated_at gets old and consumers know to be wary.
+    health = {
+        "last_successful_refresh": now_iso,
+        "marinade_api_status": "ok",
+        "rpc_chain_size": len(RPC_FALLBACK_CHAIN),
+        "marinade_events_pulled": len(events),
+        "blacklist_size": len(blacklist_records),
+        "epochs_since_latest_hard": (
+            network_max_epoch - latest_per_reason["BlacklistPenalty"]
+            if "BlacklistPenalty" in latest_per_reason and network_max_epoch
+            else None
+        ),
+        "epochs_since_latest_soft": (
+            network_max_epoch - latest_per_reason["BondRiskFee"]
+            if "BondRiskFee" in latest_per_reason and network_max_epoch
+            else None
+        ),
+        "note": (
+            "If last_successful_refresh is more than a few hours old, "
+            "the hourly cron has been failing — check the Actions tab."
+        ),
+    }
+    (DATA_DIR / "health.json").write_text(json.dumps(health, indent=2) + "\n")
 
     # by_epoch.json — { epoch: [vote_account, ...] } for time-series.
     # Includes everyone (active + inactive) — time-series naturally
@@ -384,18 +460,8 @@ def write_outputs(records: list[dict]) -> None:
         }, indent=2) + "\n"
     )
 
-    # active_only.json — subset still in the current validator set.
-    # This is the "actually dangerous right now" list for routing
-    # decisions — deregistered validators can't sandwich anyone.
-    active_records = [r for r in full["validators"] if r.get("is_active")]
-    (DATA_DIR / "active_only.json").write_text(
-        json.dumps({
-            "generated_at": now_iso,
-            "source": MARINADE_API,
-            "count": len(active_records),
-            "validators": active_records,
-        }, indent=2) + "\n"
-    )
+    # (active_only.json removed — superseded by blacklist.json, which
+    # is now strictly active + still_blacklisted.)
 
     # rehabilitated.json — actively-operating validators that were
     # slashed in the past but no longer appear in the latest
@@ -420,72 +486,9 @@ def write_outputs(records: list[dict]) -> None:
         }, indent=2) + "\n"
     )
 
-    # currently_blacklisted.json — validators that appear in the LATEST
-    # epoch's events.  This is the "still on Marinade's blacklist
-    # right now" signal — Marinade re-evaluates each epoch, so a
-    # validator that stops appearing in new epochs has been removed
-    # (or rehabilitated).  Done per severity so consumers can pick:
-    # "currently_hard" = on the blacklist this epoch; "currently_soft"
-    # = currently being charged BondRiskFee.
-    by_severity_max_epoch: dict[str, int] = {}
-    for r in records:
-        if not r["slashed_epochs"]:
-            continue
-        # Reasons array contains either BlacklistPenalty or BondRiskFee
-        # (or both — but severity already collapsed to "hard" if both).
-        for sev_key, reason_tag in (("hard", "BlacklistPenalty"),
-                                     ("soft", "BondRiskFee")):
-            if reason_tag in r.get("reasons", []):
-                cur = by_severity_max_epoch.get(sev_key, 0)
-                by_severity_max_epoch[sev_key] = max(cur, max(r["slashed_epochs"]))
-
-    def currently(reason_tag: str, latest_epoch: int) -> list[dict]:
-        """Validators with `reason_tag` event in latest_epoch."""
-        out = []
-        for r in records:
-            if reason_tag in r.get("reasons", []) and latest_epoch in r.get("slashed_epochs", []):
-                out.append(r)
-        return out
-
-    latest_hard_epoch = by_severity_max_epoch.get("hard")
-    latest_soft_epoch = by_severity_max_epoch.get("soft")
-    currently_hard = currently("BlacklistPenalty", latest_hard_epoch) if latest_hard_epoch else []
-    currently_soft = currently("BondRiskFee", latest_soft_epoch) if latest_soft_epoch else []
-    # Union: a validator with BlacklistPenalty in latest hard epoch OR
-    # BondRiskFee in latest soft epoch.  Dedupe by vote_account.
-    seen = set()
-    currently_all = []
-    for r in currently_hard + currently_soft:
-        if r["vote_account"] in seen:
-            continue
-        seen.add(r["vote_account"])
-        currently_all.append(r)
-
-    (DATA_DIR / "currently_blacklisted.json").write_text(
-        json.dumps({
-            "generated_at": now_iso,
-            "source": MARINADE_API,
-            "latest_hard_epoch": latest_hard_epoch,
-            "latest_soft_epoch": latest_soft_epoch,
-            "counts": {
-                "total": len(currently_all),
-                "hard": len(currently_hard),
-                "soft": len(currently_soft),
-            },
-            "note": (
-                "Validators that appear in the LATEST epoch's events.  "
-                "Marinade re-evaluates the blacklist each epoch; a validator "
-                "that stops appearing in new epochs has been removed."
-            ),
-            "validators": currently_all,
-        }, indent=2) + "\n"
-    )
-
-    # Plain-text versions of the currently_blacklisted set
-    write_lines("currently_blacklisted_vote_accounts.txt",
-                [r["vote_account"] for r in currently_all])
-    write_lines("currently_blacklisted_hard.txt",
-                [r["vote_account"] for r in currently_hard])
+    # (currently_blacklisted*.json and currently_blacklisted_*.txt
+    # removed — now equivalent to blacklist.json / vote_accounts_*.txt
+    # since the primary list is defined as "active + still_blacklisted".)
 
     # Append daily snapshot to history (overwrites within the same day)
     snap_path = HISTORY_DIR / f"{datetime.now(timezone.utc).strftime('%Y-%m-%d')}.json"
@@ -510,13 +513,15 @@ def main() -> int:
 
     # Latest enforcement epoch per reason — used to flag "still
     # blacklisted" vs "rehabilitated" status on each record.
+    # Uses per-reason epoch sets (not the union) so a validator with
+    # BlacklistPenalty in epoch 807 + BondRiskFee in epoch 971 doesn't
+    # incorrectly mark BlacklistPenalty's latest as 971.
     latest_epoch_by_reason: dict[str, int] = defaultdict(int)
     for r in by_vote.values():
-        for reason in r.get("reasons", []):
-            if r["slashed_epochs"]:
-                latest = max(r["slashed_epochs"])
+        for reason, eps in (r.get("epochs_by_reason") or {}).items():
+            if eps:
                 latest_epoch_by_reason[reason] = max(
-                    latest_epoch_by_reason[reason], latest
+                    latest_epoch_by_reason[reason], max(eps)
                 )
     # Across-all-reasons latest, for the epochs_since field.
     network_max_epoch = max(
@@ -525,11 +530,14 @@ def main() -> int:
 
     for vote, rec in by_vote.items():
         # still_blacklisted = appears in the LATEST enforcement batch
-        # for at least one of its reasons.
+        # for at least one of its reasons.  Per-reason check so mixed-
+        # reason validators are evaluated correctly.
         still = False
-        for reason in rec.get("reasons", []):
-            latest = latest_epoch_by_reason.get(reason, 0)
-            if rec.get("last_slashed_epoch") == latest:
+        for reason, eps in (rec.get("epochs_by_reason") or {}).items():
+            if not eps:
+                continue
+            latest_for_reason = latest_epoch_by_reason.get(reason, 0)
+            if max(eps) == latest_for_reason:
                 still = True
                 break
         rec["still_blacklisted"] = still
@@ -539,7 +547,8 @@ def main() -> int:
             network_max_epoch - last if network_max_epoch and last else None
         )
 
-    print(f"  resolving vote-account info via {RPC_URL}...", file=sys.stderr)
+    print(f"  resolving vote-account info via RPC chain "
+          f"({len(RPC_FALLBACK_CHAIN)} URLs)...", file=sys.stderr)
     vote_info = resolve_vote_account_info(list(by_vote.keys()))
     matched = 0
     for vote, rec in by_vote.items():
@@ -587,7 +596,7 @@ def main() -> int:
                 )
                 return 1
 
-    write_outputs(records)
+    write_outputs(records, events, network_max_epoch)
     print("done.", file=sys.stderr)
     return 0
 
