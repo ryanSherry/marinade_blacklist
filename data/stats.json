@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T16:32:06Z",
+  "generated_at": "2026-06-01T20:51:09Z",
   "source": "https://validator-bonds-api.marinade.finance/protected-events",
   "epoch_range": [
     807,
@@ -14,11 +14,11 @@
     "hard": 3,
     "soft": 3
   },
-  "rehabilitated_count": 26,
+  "rehabilitated_count": 25,
   "historical_counts": {
     "total": 91,
-    "active": 32,
-    "inactive": 59,
+    "active": 31,
+    "inactive": 60,
     "hard": 65,
     "soft": 26
   },
