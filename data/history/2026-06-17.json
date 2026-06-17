@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T14:57:16Z",
+  "generated_at": "2026-06-17T17:48:10Z",
   "source": "https://validator-bonds-api.marinade.finance/protected-events",
   "methodology": "The currently-enforced Marinade SAM blacklist.  Every validator here is (a) still operational and (b) appears in Marinade's most recent enforcement batch for its reason type.  Validators that Marinade has removed from active enforcement (rehabilitated) drop out of this file automatically \u2014 see rehabilitated.json for those.  Deregistered validators are excluded entirely \u2014 see historical.json for the full audit trail.",
   "epoch_range": [
@@ -52,7 +52,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 144263.8991,
       "commission_pct": 0,
-      "last_vote_slot": 427092556,
+      "last_vote_slot": 427118397,
       "is_active": true
     },
     {
@@ -79,7 +79,7 @@
       "epochs_since_last_slash": 41,
       "current_stake_sol": 303211.59,
       "commission_pct": 0,
-      "last_vote_slot": 427092556,
+      "last_vote_slot": 427118397,
       "is_active": true
     },
     {
@@ -106,7 +106,7 @@
       "epochs_since_last_slash": 41,
       "current_stake_sol": 120419.6487,
       "commission_pct": 5,
-      "last_vote_slot": 427092556,
+      "last_vote_slot": 427118397,
       "is_active": true
     },
     {
@@ -143,7 +143,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 200353.5531,
       "commission_pct": 5,
-      "last_vote_slot": 427092556,
+      "last_vote_slot": 427118397,
       "is_active": true
     },
     {
@@ -190,7 +190,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 64716.5593,
       "commission_pct": 5,
-      "last_vote_slot": 427092556,
+      "last_vote_slot": 427118397,
       "is_active": true
     },
     {
@@ -217,7 +217,7 @@
       "epochs_since_last_slash": 41,
       "current_stake_sol": 69356.6632,
       "commission_pct": 0,
-      "last_vote_slot": 427092556,
+      "last_vote_slot": 427118397,
       "is_active": true
     }
   ]
