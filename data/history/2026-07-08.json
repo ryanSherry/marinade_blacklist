@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-07-08T15:10:39Z",
+  "generated_at": "2026-07-08T17:20:34Z",
   "source": "https://validator-bonds-api.marinade.finance/protected-events",
   "methodology": "The currently-enforced Marinade SAM blacklist.  Every validator here is (a) still operational and (b) appears in Marinade's most recent enforcement batch for its reason type.  Validators that Marinade has removed from active enforcement (rehabilitated) drop out of this file automatically \u2014 see rehabilitated.json for those.  Deregistered validators are excluded entirely \u2014 see historical.json for the full audit trail.",
   "epoch_range": [
     807,
-    997
+    998
   ],
   "counts": {
-    "total": 4,
+    "total": 8,
     "hard": 1,
-    "soft": 3
+    "soft": 7
   },
   "validators": [
     {
@@ -38,19 +38,89 @@
         993
       ],
       "still_blacklisted": true,
-      "epochs_since_last_slash": 4,
+      "epochs_since_last_slash": 5,
       "current_stake_sol": 347537.6153,
       "commission_pct": 0,
-      "last_vote_slot": 431612840,
+      "last_vote_slot": 431631967,
+      "is_active": true
+    },
+    {
+      "vote_account": "i6PZjkPHGYmPfPE8LsJuLn5huZyusXhmysiDiHGPjxb",
+      "validator_identity": "5marvipGzf98hxnoJFXsZbGHSXcEQ3yRGJ4ps7D3V4ou",
+      "severity": "soft",
+      "slashed_lamports": 43801333807,
+      "slashed_sol": 43.8013,
+      "event_count": 6,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          961,
+          962,
+          992,
+          995,
+          998
+        ]
+      },
+      "reasons": [
+        "BondRiskFee"
+      ],
+      "first_slashed_epoch": 960,
+      "last_slashed_epoch": 998,
+      "slashed_epochs": [
+        960,
+        961,
+        962,
+        992,
+        995,
+        998
+      ],
+      "still_blacklisted": true,
+      "epochs_since_last_slash": 0,
+      "current_stake_sol": 244279.4816,
+      "commission_pct": 5,
+      "last_vote_slot": 431631967,
+      "is_active": true
+    },
+    {
+      "vote_account": "GW8GgoeBpLM4TpeR2ePVcYYSoySBaKJgt2JiwoyjXRz3",
+      "validator_identity": "ArMBx6veRq33ffEP9sxHafiPRgrtzww4XvbwZbSMfXiM",
+      "severity": "soft",
+      "slashed_lamports": 26030571684,
+      "slashed_sol": 26.0306,
+      "event_count": 4,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          960,
+          985,
+          994,
+          998
+        ]
+      },
+      "reasons": [
+        "BondRiskFee"
+      ],
+      "first_slashed_epoch": 960,
+      "last_slashed_epoch": 998,
+      "slashed_epochs": [
+        960,
+        985,
+        994,
+        998
+      ],
+      "still_blacklisted": true,
+      "epochs_since_last_slash": 0,
+      "current_stake_sol": 50896.0641,
+      "commission_pct": 5,
+      "last_vote_slot": 431631967,
       "is_active": true
     },
     {
       "vote_account": "GzjMbJQDVuBLFY69QwhhjDGDy2o5Q6nswXMuVTCWEFnp",
       "validator_identity": "CZanBzZHFzrGY5qKzaX3CNhJ5smHEMTWFFnoeUi4J6dr",
       "severity": "soft",
-      "slashed_lamports": 21473445641,
-      "slashed_sol": 21.4734,
-      "event_count": 14,
+      "slashed_lamports": 23053779429,
+      "slashed_sol": 23.0538,
+      "event_count": 15,
       "epochs_by_reason": {
         "BondRiskFee": [
           960,
@@ -66,14 +136,15 @@
           987,
           988,
           989,
-          997
+          997,
+          998
         ]
       },
       "reasons": [
         "BondRiskFee"
       ],
       "first_slashed_epoch": 960,
-      "last_slashed_epoch": 997,
+      "last_slashed_epoch": 998,
       "slashed_epochs": [
         960,
         961,
@@ -88,22 +159,23 @@
         987,
         988,
         989,
-        997
+        997,
+        998
       ],
       "still_blacklisted": true,
       "epochs_since_last_slash": 0,
       "current_stake_sol": 101228.4703,
       "commission_pct": 5,
-      "last_vote_slot": 431612840,
+      "last_vote_slot": 431631967,
       "is_active": true
     },
     {
       "vote_account": "A11pGbZDE8fPNZgiqDjoST6v3QMdhzZ3r8W5YahCKtS5",
       "validator_identity": "Mwz8VgAEnPtfqS62r3ixrFiMJwnNfEwR141CGnsTo5k",
       "severity": "soft",
-      "slashed_lamports": 8931548562,
-      "slashed_sol": 8.9315,
-      "event_count": 11,
+      "slashed_lamports": 9759463438,
+      "slashed_sol": 9.7595,
+      "event_count": 12,
       "epochs_by_reason": {
         "BondRiskFee": [
           960,
@@ -116,14 +188,15 @@
           992,
           994,
           995,
-          997
+          997,
+          998
         ]
       },
       "reasons": [
         "BondRiskFee"
       ],
       "first_slashed_epoch": 960,
-      "last_slashed_epoch": 997,
+      "last_slashed_epoch": 998,
       "slashed_epochs": [
         960,
         961,
@@ -135,40 +208,99 @@
         992,
         994,
         995,
-        997
+        997,
+        998
       ],
       "still_blacklisted": true,
       "epochs_since_last_slash": 0,
       "current_stake_sol": 72414.9654,
       "commission_pct": 0,
-      "last_vote_slot": 431612839,
+      "last_vote_slot": 431631966,
       "is_active": true
     },
     {
       "vote_account": "RLMS1xvot6R9RCDbCtZN8toXGm1ceJHXnBSNC1wY3FU",
       "validator_identity": "RLMS1pv3YKi7CSUCKTNcFN5fFkXJc2SmCwPhbQpqZJo",
       "severity": "soft",
-      "slashed_lamports": 5014367937,
-      "slashed_sol": 5.0144,
-      "event_count": 1,
+      "slashed_lamports": 9436402813,
+      "slashed_sol": 9.4364,
+      "event_count": 2,
       "epochs_by_reason": {
         "BondRiskFee": [
-          997
+          997,
+          998
         ]
       },
       "reasons": [
         "BondRiskFee"
       ],
       "first_slashed_epoch": 997,
-      "last_slashed_epoch": 997,
+      "last_slashed_epoch": 998,
       "slashed_epochs": [
-        997
+        997,
+        998
       ],
       "still_blacklisted": true,
       "epochs_since_last_slash": 0,
       "current_stake_sol": 173838.7595,
       "commission_pct": 5,
-      "last_vote_slot": 431612840,
+      "last_vote_slot": 431631967,
+      "is_active": true
+    },
+    {
+      "vote_account": "2wUhcnViyzstvWmk7NAboKtjbFbqJPo4BvFBV37dacLc",
+      "validator_identity": "HnwMGBAw5PxaX56eSYc969MorEy2NzEMPLkmBkdnJmeq",
+      "severity": "soft",
+      "slashed_lamports": 2695354820,
+      "slashed_sol": 2.6954,
+      "event_count": 2,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          995,
+          998
+        ]
+      },
+      "reasons": [
+        "BondRiskFee"
+      ],
+      "first_slashed_epoch": 995,
+      "last_slashed_epoch": 998,
+      "slashed_epochs": [
+        995,
+        998
+      ],
+      "still_blacklisted": true,
+      "epochs_since_last_slash": 0,
+      "current_stake_sol": 174186.3379,
+      "commission_pct": 5,
+      "last_vote_slot": 431631967,
+      "is_active": true
+    },
+    {
+      "vote_account": "EtMSc3MvcDXUr6ChK5GxyFVwTxYA3zqP5XzjE9jwKvSV",
+      "validator_identity": "EBk678aQvc3cUkfGyoehfw21JQfJXjmWuBeopYc89RSV",
+      "severity": "soft",
+      "slashed_lamports": 196926226,
+      "slashed_sol": 0.1969,
+      "event_count": 1,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          998
+        ]
+      },
+      "reasons": [
+        "BondRiskFee"
+      ],
+      "first_slashed_epoch": 998,
+      "last_slashed_epoch": 998,
+      "slashed_epochs": [
+        998
+      ],
+      "still_blacklisted": true,
+      "epochs_since_last_slash": 0,
+      "current_stake_sol": 100645.5556,
+      "commission_pct": 5,
+      "last_vote_slot": 431631967,
       "is_active": true
     }
   ]
