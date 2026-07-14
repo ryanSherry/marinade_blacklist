@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T15:17:13Z",
+  "generated_at": "2026-07-14T17:04:24Z",
   "source": "https://validator-bonds-api.marinade.finance/protected-events",
   "methodology": "The currently-enforced Marinade SAM blacklist.  Every validator here is (a) still operational and (b) appears in Marinade's most recent enforcement batch for its reason type.  Validators that Marinade has removed from active enforcement (rehabilitated) drop out of this file automatically \u2014 see rehabilitated.json for those.  Deregistered validators are excluded entirely \u2014 see historical.json for the full audit trail.",
   "epoch_range": [
@@ -41,7 +41,7 @@
       "epochs_since_last_slash": 7,
       "current_stake_sol": 347852.257,
       "commission_pct": 0,
-      "last_vote_slot": 432877996,
+      "last_vote_slot": 432893586,
       "is_active": true
     },
     {
@@ -94,7 +94,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 64157.0933,
       "commission_pct": 0,
-      "last_vote_slot": 432877996,
+      "last_vote_slot": 432893585,
       "is_active": true
     },
     {
@@ -123,7 +123,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 109363.9663,
       "commission_pct": 0,
-      "last_vote_slot": 432877996,
+      "last_vote_slot": 432893586,
       "is_active": true
     },
     {
@@ -156,7 +156,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 173968.1157,
       "commission_pct": 5,
-      "last_vote_slot": 432877996,
+      "last_vote_slot": 432893585,
       "is_active": true
     },
     {
@@ -185,7 +185,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 117201.5075,
       "commission_pct": 3,
-      "last_vote_slot": 432877996,
+      "last_vote_slot": 432893586,
       "is_active": true
     },
     {
@@ -216,7 +216,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 97695.3153,
       "commission_pct": 5,
-      "last_vote_slot": 432877996,
+      "last_vote_slot": 432893586,
       "is_active": true
     }
   ]
