@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T09:48:10Z",
+  "generated_at": "2026-07-14T11:18:52Z",
   "source": "https://validator-bonds-api.marinade.finance/protected-events",
   "methodology": "The currently-enforced Marinade SAM blacklist.  Every validator here is (a) still operational and (b) appears in Marinade's most recent enforcement batch for its reason type.  Validators that Marinade has removed from active enforcement (rehabilitated) drop out of this file automatically \u2014 see rehabilitated.json for those.  Deregistered validators are excluded entirely \u2014 see historical.json for the full audit trail.",
   "epoch_range": [
@@ -41,7 +41,7 @@
       "epochs_since_last_slash": 7,
       "current_stake_sol": 347747.4774,
       "commission_pct": 0,
-      "last_vote_slot": 432830027,
+      "last_vote_slot": 432843245,
       "is_active": true
     }
   ]
