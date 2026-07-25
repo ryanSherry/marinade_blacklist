@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T15:57:51Z",
+  "generated_at": "2026-07-25T16:55:24Z",
   "source": "https://validator-bonds-api.marinade.finance/protected-events",
   "methodology": "The currently-enforced Marinade SAM blacklist.  Every validator here is (a) still operational and (b) appears in Marinade's most recent enforcement batch for its reason type.  Validators that Marinade has removed from active enforcement (rehabilitated) drop out of this file automatically \u2014 see rehabilitated.json for those.  Deregistered validators are excluded entirely \u2014 see historical.json for the full audit trail.",
   "epoch_range": [
@@ -41,7 +41,7 @@
       "epochs_since_last_slash": 13,
       "current_stake_sol": 348236.7227,
       "commission_pct": 0,
-      "last_vote_slot": 435156690,
+      "last_vote_slot": 435164928,
       "is_active": true
     },
     {
@@ -86,7 +86,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 337728.9918,
       "commission_pct": 5,
-      "last_vote_slot": 435156690,
+      "last_vote_slot": 435164928,
       "is_active": true
     },
     {
@@ -123,7 +123,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 395393.4571,
       "commission_pct": 0,
-      "last_vote_slot": 435156690,
+      "last_vote_slot": 435164928,
       "is_active": true
     },
     {
@@ -166,7 +166,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 171534.3695,
       "commission_pct": 0,
-      "last_vote_slot": 435156690,
+      "last_vote_slot": 435164928,
       "is_active": true
     },
     {
@@ -221,7 +221,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 56451.6528,
       "commission_pct": 0,
-      "last_vote_slot": 435156689,
+      "last_vote_slot": 435164928,
       "is_active": true
     },
     {
@@ -260,7 +260,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 144261.8818,
       "commission_pct": 5,
-      "last_vote_slot": 435156690,
+      "last_vote_slot": 435164927,
       "is_active": true
     },
     {
@@ -293,7 +293,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 138709.1696,
       "commission_pct": 0,
-      "last_vote_slot": 435156690,
+      "last_vote_slot": 435164928,
       "is_active": true
     },
     {
@@ -320,7 +320,7 @@
       "epochs_since_last_slash": 0,
       "current_stake_sol": 237279.1021,
       "commission_pct": 0,
-      "last_vote_slot": 435156690,
+      "last_vote_slot": 435164928,
       "is_active": true
     }
   ]
