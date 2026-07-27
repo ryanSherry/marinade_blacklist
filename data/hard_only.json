@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-27T06:18:51Z",
+  "generated_at": "2026-07-27T10:33:24Z",
   "source": "https://validator-bonds-api.marinade.finance/protected-events",
   "methodology": "The currently-enforced Marinade SAM blacklist.  Every validator here is (a) still operational and (b) appears in Marinade's most recent enforcement batch for its reason type.  Validators that Marinade has removed from active enforcement (rehabilitated) drop out of this file automatically \u2014 see rehabilitated.json for those.  Deregistered validators are excluded entirely \u2014 see historical.json for the full audit trail.",
   "epoch_range": [
     807,
-    1006
+    1007
   ],
   "counts": {
     "total": 1,
@@ -13,35 +13,35 @@
   },
   "validators": [
     {
-      "vote_account": "AGJmwvFJmJqHsSCu4EPsZ4W5N2hpwWC3FNQJc8ZFJBsy",
-      "validator_identity": "9WzPWqKSqbE5PT9hMsmCDFjzpurAXEYCE9qrpVWp28KR",
+      "vote_account": "5DutFKQ8qPmbjFEmp31QH9JDYJXvwh9pma8ap5Phxk6H",
+      "validator_identity": "FFevTkywysWf8PJvH4DZkEp4v9ks9HJPJhZWbhhJiYnr",
       "severity": "hard",
-      "slashed_lamports": 261671438221,
-      "slashed_sol": 261.6714,
+      "slashed_lamports": 6967189493,
+      "slashed_sol": 6.9672,
       "event_count": 2,
       "epochs_by_reason": {
-        "BlacklistPenalty": [
-          993
-        ],
         "BondRiskFee": [
-          992
+          1005
+        ],
+        "BlacklistPenalty": [
+          1007
         ]
       },
       "reasons": [
         "BlacklistPenalty",
         "BondRiskFee"
       ],
-      "first_slashed_epoch": 992,
-      "last_slashed_epoch": 993,
+      "first_slashed_epoch": 1005,
+      "last_slashed_epoch": 1007,
       "slashed_epochs": [
-        992,
-        993
+        1005,
+        1007
       ],
       "still_blacklisted": true,
-      "epochs_since_last_slash": 13,
-      "current_stake_sol": 348341.6811,
-      "commission_pct": 0,
-      "last_vote_slot": 435485304,
+      "epochs_since_last_slash": 0,
+      "current_stake_sol": 19056.6359,
+      "commission_pct": 5,
+      "last_vote_slot": 435521526,
       "is_active": true
     }
   ]
