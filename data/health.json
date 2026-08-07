@@ -1,8 +1,8 @@
 {
-  "last_successful_refresh": "2026-08-06T23:50:47Z",
+  "last_successful_refresh": "2026-08-07T02:10:46Z",
   "marinade_api_status": "ok",
   "rpc_chain_size": 3,
-  "marinade_events_pulled": 56742,
+  "marinade_events_pulled": 56822,
   "blacklist_size": 2,
   "epochs_since_latest_hard": 3,
   "epochs_since_latest_soft": 0,
