@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T20:40:25Z",
+  "generated_at": "2026-10-07T00:15:11Z",
   "source": "https://validator-bonds-api.marinade.finance/protected-events",
   "epoch_range": [
     807,
@@ -14,15 +14,15 @@
     "hard": 1,
     "soft": 2
   },
-  "rehabilitated_count": 41,
+  "rehabilitated_count": 42,
   "historical_counts": {
     "total": 114,
-    "active": 44,
-    "inactive": 70,
+    "active": 45,
+    "inactive": 69,
     "hard": 67,
     "soft": 47
   },
-  "blacklisted_stake_sol": 394422.12,
+  "blacklisted_stake_sol": 364208.5,
   "blacklisted_total_slashed_sol": 32.52,
   "historical_total_slashed_sol": 8269.75
 }
