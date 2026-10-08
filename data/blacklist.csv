@@ -1,5 +1,5 @@
 severity,vote_account,validator_identity,still_blacklisted,is_active,current_stake_sol,commission_pct,slashed_sol,slashed_lamports,event_count,first_slashed_epoch,last_slashed_epoch,epochs_since_last_slash,last_vote_slot,reasons
-soft,A11pGbZDE8fPNZgiqDjoST6v3QMdhzZ3r8W5YahCKtS5,Mwz8VgAEnPtfqS62r3ixrFiMJwnNfEwR141CGnsTo5k,True,True,104659.0139,0,17.4791,17479093519,18,960,1050,0,454385098,BondRiskFee
-soft,9rwCwfL74J6AfgKbVK7s7jjMqngvHtiBcV1WTNXN8hLa,svsD6T44XJnuXQWB15sy1pBxxruzrFy8rR7gXy8Jsj3,True,True,212771.0925,0,9.9508,9950761718,12,1039,1050,0,454385099,BondRiskFee
-hard,5DutFKQ8qPmbjFEmp31QH9JDYJXvwh9pma8ap5Phxk6H,FFevTkywysWf8PJvH4DZkEp4v9ks9HJPJhZWbhhJiYnr,True,True,46778.3967,5,8.6417,8641737769,3,1005,1050,0,454385099,"BlacklistPenalty,BondRiskFee"
-soft,89DXJe6XTDASsmyXJoPyRetLq1csRj9N2Bwn67fNvYGt,5fSQdv4zsAJNx6RKpGho6sL6rY6a8nziaqcmwaRJB9NE,True,True,65872.3455,5,0.7065,706488874,1,1050,1050,0,454385099,BondRiskFee
+soft,A11pGbZDE8fPNZgiqDjoST6v3QMdhzZ3r8W5YahCKtS5,Mwz8VgAEnPtfqS62r3ixrFiMJwnNfEwR141CGnsTo5k,True,True,104189.87,0,17.4791,17479093519,18,960,1050,0,454469277,BondRiskFee
+soft,9rwCwfL74J6AfgKbVK7s7jjMqngvHtiBcV1WTNXN8hLa,svsD6T44XJnuXQWB15sy1pBxxruzrFy8rR7gXy8Jsj3,True,True,213296.7384,0,9.9508,9950761718,12,1039,1050,0,454469278,BondRiskFee
+hard,5DutFKQ8qPmbjFEmp31QH9JDYJXvwh9pma8ap5Phxk6H,FFevTkywysWf8PJvH4DZkEp4v9ks9HJPJhZWbhhJiYnr,True,True,35035.7029,5,8.6417,8641737769,3,1005,1050,0,454469278,"BlacklistPenalty,BondRiskFee"
+soft,89DXJe6XTDASsmyXJoPyRetLq1csRj9N2Bwn67fNvYGt,5fSQdv4zsAJNx6RKpGho6sL6rY6a8nziaqcmwaRJB9NE,True,True,95891.0832,5,0.7065,706488874,1,1050,1050,0,454469278,BondRiskFee
