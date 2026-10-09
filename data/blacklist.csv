@@ -1,7 +1,7 @@
 severity,vote_account,validator_identity,still_blacklisted,is_active,current_stake_sol,commission_pct,slashed_sol,slashed_lamports,event_count,first_slashed_epoch,last_slashed_epoch,epochs_since_last_slash,last_vote_slot,reasons
-soft,Ec55BotYhWgC3xRmZ2UpuJvyySwxZeUrvEDPrxxG7r9B,6XJ4aKjsKQsTfhajjXNycZ11HhkXzTCheKdpWt78doFu,True,True,531214.5466,0,164.8169,164816885689,8,960,1051,0,454650396,BondRiskFee
-soft,A11pGbZDE8fPNZgiqDjoST6v3QMdhzZ3r8W5YahCKtS5,Mwz8VgAEnPtfqS62r3ixrFiMJwnNfEwR141CGnsTo5k,True,True,104189.87,0,18.6916,18691599625,19,960,1051,0,454650396,BondRiskFee
-soft,9rwCwfL74J6AfgKbVK7s7jjMqngvHtiBcV1WTNXN8hLa,svsD6T44XJnuXQWB15sy1pBxxruzrFy8rR7gXy8Jsj3,True,True,213296.7384,0,10.2254,10225390936,13,1039,1051,0,454650396,BondRiskFee
-soft,2wUhcnViyzstvWmk7NAboKtjbFbqJPo4BvFBV37dacLc,HnwMGBAw5PxaX56eSYc969MorEy2NzEMPLkmBkdnJmeq,True,True,158734.1082,5,9.5914,9591446404,8,995,1051,0,454650395,BondRiskFee
-hard,5DutFKQ8qPmbjFEmp31QH9JDYJXvwh9pma8ap5Phxk6H,FFevTkywysWf8PJvH4DZkEp4v9ks9HJPJhZWbhhJiYnr,True,True,35035.7029,5,8.6417,8641737769,3,1005,1050,1,454650395,"BlacklistPenalty,BondRiskFee"
-soft,89DXJe6XTDASsmyXJoPyRetLq1csRj9N2Bwn67fNvYGt,5fSQdv4zsAJNx6RKpGho6sL6rY6a8nziaqcmwaRJB9NE,True,True,95891.0832,5,1.2545,1254539916,2,1050,1051,0,454650396,BondRiskFee
+soft,Ec55BotYhWgC3xRmZ2UpuJvyySwxZeUrvEDPrxxG7r9B,6XJ4aKjsKQsTfhajjXNycZ11HhkXzTCheKdpWt78doFu,True,True,531214.5466,0,164.8169,164816885689,8,960,1051,0,454710186,BondRiskFee
+soft,A11pGbZDE8fPNZgiqDjoST6v3QMdhzZ3r8W5YahCKtS5,Mwz8VgAEnPtfqS62r3ixrFiMJwnNfEwR141CGnsTo5k,True,True,104189.87,0,18.6916,18691599625,19,960,1051,0,454710186,BondRiskFee
+soft,9rwCwfL74J6AfgKbVK7s7jjMqngvHtiBcV1WTNXN8hLa,svsD6T44XJnuXQWB15sy1pBxxruzrFy8rR7gXy8Jsj3,True,True,213296.7384,0,10.2254,10225390936,13,1039,1051,0,454710186,BondRiskFee
+soft,2wUhcnViyzstvWmk7NAboKtjbFbqJPo4BvFBV37dacLc,HnwMGBAw5PxaX56eSYc969MorEy2NzEMPLkmBkdnJmeq,True,True,158734.1082,5,9.5914,9591446404,8,995,1051,0,454710185,BondRiskFee
+hard,5DutFKQ8qPmbjFEmp31QH9JDYJXvwh9pma8ap5Phxk6H,FFevTkywysWf8PJvH4DZkEp4v9ks9HJPJhZWbhhJiYnr,True,True,35035.7029,5,8.6417,8641737769,3,1005,1050,1,454710186,"BlacklistPenalty,BondRiskFee"
+soft,89DXJe6XTDASsmyXJoPyRetLq1csRj9N2Bwn67fNvYGt,5fSQdv4zsAJNx6RKpGho6sL6rY6a8nziaqcmwaRJB9NE,True,True,95891.0832,5,1.2545,1254539916,2,1050,1051,0,454710186,BondRiskFee
