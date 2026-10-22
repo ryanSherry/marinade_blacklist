@@ -1,10 +1,10 @@
 {
-  "last_successful_refresh": "2026-10-22T17:45:07Z",
+  "last_successful_refresh": "2026-10-22T21:00:02Z",
   "marinade_api_status": "ok",
   "rpc_chain_size": 3,
-  "marinade_events_pulled": 61255,
+  "marinade_events_pulled": 61345,
   "blacklist_size": 4,
-  "epochs_since_latest_hard": 56,
+  "epochs_since_latest_hard": 57,
   "epochs_since_latest_soft": 0,
   "note": "If last_successful_refresh is more than a few hours old, the hourly cron has been failing \u2014 check the Actions tab."
 }
