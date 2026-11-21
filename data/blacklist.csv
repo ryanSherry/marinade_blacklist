@@ -1,2 +1,2 @@
 severity,vote_account,validator_identity,still_blacklisted,is_active,current_stake_sol,commission_pct,slashed_sol,slashed_lamports,event_count,first_slashed_epoch,last_slashed_epoch,epochs_since_last_slash,last_vote_slot,reasons
-soft,JnGGar3XbAN6J3cKGRbNajCuhqnc9XWrk6WWr6hDmuM,HcZvwZ83PfjrQDiq3GLHxisTs17aGURs6bJ2LwtmL4qv,True,True,301459.469,5,138.3485,138348549552,12,960,1082,0,472194902,BondRiskFee
+soft,5StcxdmFy5TKeZZGV587H2Kz6jADJmQB5ihWsX97SNvf,H4te9uzz1c74QeqfhyKeENoTvSseEPm4A3oFXBvqpF8Q,True,True,451464.7714,0,14.6635,14663510741,2,1064,1092,0,472287922,BondRiskFee
