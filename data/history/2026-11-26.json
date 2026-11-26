@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-11-26T06:05:24Z",
+  "source": "https://validator-bonds-api.marinade.finance/protected-events",
+  "methodology": "The currently-enforced Marinade SAM blacklist.  Every validator here is (a) still operational and (b) appears in Marinade's most recent enforcement batch for its reason type.  Validators that Marinade has removed from active enforcement (rehabilitated) drop out of this file automatically \u2014 see rehabilitated.json for those.  Deregistered validators are excluded entirely \u2014 see historical.json for the full audit trail.",
+  "epoch_range": [
+    807,
+    1094
+  ],
+  "counts": {
+    "total": 1,
+    "hard": 0,
+    "soft": 1
+  },
+  "validators": [
+    {
+      "vote_account": "5StcxdmFy5TKeZZGV587H2Kz6jADJmQB5ihWsX97SNvf",
+      "validator_identity": "H4te9uzz1c74QeqfhyKeENoTvSseEPm4A3oFXBvqpF8Q",
+      "severity": "soft",
+      "slashed_lamports": 27688667592,
+      "slashed_sol": 27.6887,
+      "event_count": 3,
+      "epochs_by_reason": {
+        "BondRiskFee": [
+          1064,
+          1092,
+          1094
+        ]
+      },
+      "reasons": [
+        "BondRiskFee"
+      ],
+      "first_slashed_epoch": 1064,
+      "last_slashed_epoch": 1094,
+      "slashed_epochs": [
+        1064,
+        1092,
+        1094
+      ],
+      "still_blacklisted": true,
+      "epochs_since_last_slash": 0,
+      "current_stake_sol": 452479.1745,
+      "commission_pct": 0,
+      "last_vote_slot": 474041278,
+      "is_active": true
+    }
+  ]
+}
