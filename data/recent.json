@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T19:44:28Z",
+  "generated_at": "2026-11-28T02:24:06Z",
   "epoch_range": [
     807,
     1097
@@ -48,9 +48,9 @@
       ],
       "still_blacklisted": true,
       "epochs_since_last_slash": 0,
-      "current_stake_sol": 190945.0396,
+      "current_stake_sol": 190824.3107,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -81,9 +81,9 @@
       ],
       "still_blacklisted": true,
       "epochs_since_last_slash": 0,
-      "current_stake_sol": 95418.5946,
+      "current_stake_sol": 70573.4981,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -112,9 +112,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 3,
-      "current_stake_sol": 452427.8844,
+      "current_stake_sol": 470576.7538,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -161,9 +161,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 15,
-      "current_stake_sol": 295343.1255,
+      "current_stake_sol": 295312.2835,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -204,9 +204,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 16,
-      "current_stake_sol": 68443.3726,
+      "current_stake_sol": 70481.1904,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -233,9 +233,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 16,
-      "current_stake_sol": 199181.2755,
+      "current_stake_sol": 199167.1658,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -262,9 +262,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 17,
-      "current_stake_sol": 294961.7328,
+      "current_stake_sol": 300750.4821,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -307,9 +307,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 23,
-      "current_stake_sol": 142461.2114,
+      "current_stake_sol": 142233.8616,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -334,9 +334,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 23,
-      "current_stake_sol": 107168.6952,
+      "current_stake_sol": 74770.5884,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -389,9 +389,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 31,
-      "current_stake_sol": 157942.9325,
+      "current_stake_sol": 158112.4382,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -416,9 +416,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 34,
-      "current_stake_sol": 313179.0896,
+      "current_stake_sol": 311691.6362,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -443,9 +443,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 36,
-      "current_stake_sol": 116111.263,
+      "current_stake_sol": 40739.9769,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -470,9 +470,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 36,
-      "current_stake_sol": 231959.7839,
+      "current_stake_sol": 83829.7976,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -497,9 +497,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 36,
-      "current_stake_sol": 113053.3334,
+      "current_stake_sol": 26744.6483,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -524,9 +524,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 39,
-      "current_stake_sol": 97240.0726,
+      "current_stake_sol": 97301.2941,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -591,9 +591,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 42,
-      "current_stake_sol": 59244.5487,
+      "current_stake_sol": 59385.8649,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -650,9 +650,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 42,
-      "current_stake_sol": 115233.5222,
+      "current_stake_sol": 114682.0183,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -693,9 +693,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 45,
-      "current_stake_sol": 286958.7099,
+      "current_stake_sol": 287559.0582,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -736,9 +736,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 45,
-      "current_stake_sol": 162179.0387,
+      "current_stake_sol": 162712.8017,
       "commission_pct": 5,
-      "last_vote_slot": 474672022,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -765,9 +765,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 46,
-      "current_stake_sol": 120657.872,
+      "current_stake_sol": 120436.5849,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -800,9 +800,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 57,
-      "current_stake_sol": 490.2955,
+      "current_stake_sol": 490.601,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -845,9 +845,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 57,
-      "current_stake_sol": 40358.5184,
+      "current_stake_sol": 40397.2238,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -884,9 +884,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 72,
-      "current_stake_sol": 35232.3405,
+      "current_stake_sol": 35140.5546,
       "commission_pct": 0,
-      "last_vote_slot": 474672020,
+      "last_vote_slot": 474783729,
       "is_active": true
     },
     {
@@ -911,9 +911,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 76,
-      "current_stake_sol": 107685.4218,
+      "current_stake_sol": 107703.8203,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -938,9 +938,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 79,
-      "current_stake_sol": 509336.0882,
+      "current_stake_sol": 509301.7232,
       "commission_pct": 0,
-      "last_vote_slot": 474672022,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -965,9 +965,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 81,
-      "current_stake_sol": 177530.1162,
+      "current_stake_sol": 177402.787,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -992,9 +992,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 81,
-      "current_stake_sol": 98252.8339,
+      "current_stake_sol": 98109.1068,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1019,9 +1019,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 87,
-      "current_stake_sol": 191960.5059,
+      "current_stake_sol": 191113.0933,
       "commission_pct": 5,
-      "last_vote_slot": 474672016,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -1058,9 +1058,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 88,
-      "current_stake_sol": 150044.3134,
+      "current_stake_sol": 151941.603,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1085,9 +1085,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 91,
-      "current_stake_sol": 210404.3851,
+      "current_stake_sol": 210272.8415,
       "commission_pct": 0,
-      "last_vote_slot": 474672016,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -1142,9 +1142,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 92,
-      "current_stake_sol": 176923.9726,
+      "current_stake_sol": 176967.3645,
       "commission_pct": 5,
-      "last_vote_slot": 474672016,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -1173,9 +1173,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 92,
-      "current_stake_sol": 166908.7052,
+      "current_stake_sol": 167925.5672,
       "commission_pct": 5,
-      "last_vote_slot": 474672016,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -1206,9 +1206,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 95,
-      "current_stake_sol": 90295.2254,
+      "current_stake_sol": 90336.3122,
       "commission_pct": 5,
-      "last_vote_slot": 474672016,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -1239,9 +1239,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 96,
-      "current_stake_sol": 47645.4116,
+      "current_stake_sol": 67919.9577,
       "commission_pct": 5,
-      "last_vote_slot": 474672016,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -1272,9 +1272,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 99,
-      "current_stake_sol": 110810.1923,
+      "current_stake_sol": 110018.3772,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1304,9 +1304,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 104,
-      "current_stake_sol": 354193.166,
+      "current_stake_sol": 354244.4705,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1331,9 +1331,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 109,
-      "current_stake_sol": 87202.8847,
+      "current_stake_sol": 87802.3428,
       "commission_pct": 5,
-      "last_vote_slot": 474672022,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1370,9 +1370,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 111,
-      "current_stake_sol": 160931.2592,
+      "current_stake_sol": 160811.628,
       "commission_pct": 5,
-      "last_vote_slot": 474672016,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -1419,9 +1419,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 111,
-      "current_stake_sol": 115129.9628,
+      "current_stake_sol": 114982.129,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1458,9 +1458,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 112,
-      "current_stake_sol": 173116.6569,
+      "current_stake_sol": 173414.0316,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1493,9 +1493,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 133,
-      "current_stake_sol": 97571.7137,
+      "current_stake_sol": 95866.8697,
       "commission_pct": 0,
-      "last_vote_slot": 474672016,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -1520,9 +1520,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 137,
-      "current_stake_sol": 125906.133,
+      "current_stake_sol": 125768.6033,
       "commission_pct": 5,
-      "last_vote_slot": 474672016,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -1547,9 +1547,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 137,
-      "current_stake_sol": 107554.1856,
+      "current_stake_sol": 107797.9947,
       "commission_pct": 5,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1574,9 +1574,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 151,
-      "current_stake_sol": 421516.0032,
+      "current_stake_sol": 459251.165,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1601,9 +1601,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 151,
-      "current_stake_sol": 145993.5651,
+      "current_stake_sol": 145875.8132,
       "commission_pct": 5,
-      "last_vote_slot": 474672016,
+      "last_vote_slot": 474783728,
       "is_active": true
     },
     {
@@ -1629,8 +1629,8 @@
       "still_blacklisted": false,
       "epochs_since_last_slash": 256,
       "current_stake_sol": 9407.8044,
-      "commission_pct": 100,
-      "last_vote_slot": 474672023,
+      "commission_pct": 0,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1655,9 +1655,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 261,
-      "current_stake_sol": 24948.0438,
+      "current_stake_sol": 24948.0757,
       "commission_pct": 99,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1682,9 +1682,9 @@
       ],
       "still_blacklisted": false,
       "epochs_since_last_slash": 268,
-      "current_stake_sol": 15411.0379,
+      "current_stake_sol": 15948.5464,
       "commission_pct": 0,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1711,7 +1711,7 @@
       "epochs_since_last_slash": 290,
       "current_stake_sol": 58244.1222,
       "commission_pct": 100,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     },
     {
@@ -1738,7 +1738,7 @@
       "epochs_since_last_slash": 290,
       "current_stake_sol": 14742.9699,
       "commission_pct": 100,
-      "last_vote_slot": 474672023,
+      "last_vote_slot": 474783735,
       "is_active": true
     }
   ]
